@@ -38,19 +38,19 @@ export default function Home() {
             Bernardo P.
           </a>
           <div id="navLinks" className="nav-links">
-            <a href="#sobre" className="nav-link">
+            <a href="#sobre" data-spy="sobre" className="nav-link">
               {t.nav.about}
             </a>
-            <a href="#formacao" className="nav-link">
+            <a href="#formacao" data-spy="formacao" className="nav-link">
               {t.nav.education}
             </a>
-            <a href="#experiencia" className="nav-link">
+            <a href="#experiencia" data-spy="experiencia" className="nav-link">
               {t.nav.experience}
             </a>
-            <a href="#projetos" className="nav-link">
+            <a href="#projetos" data-spy="projetos" className="nav-link">
               {t.nav.projects}
             </a>
-            <a href="#contato" className="nav-link">
+            <a href="#contato" data-spy="contato" className="nav-link">
               {t.nav.contact}
             </a>
           </div>

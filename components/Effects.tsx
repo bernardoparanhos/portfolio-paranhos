@@ -62,6 +62,30 @@ export default function Effects() {
       });
     }
 
+    // Scroll-spy: destaca o link da seção que está no meio da viewport. É navegação,
+    // não animação — por isso roda antes do early-return de reduced-motion.
+    const spyLinks = Array.from(document.querySelectorAll<HTMLElement>("[data-spy]"));
+    if (spyLinks.length) {
+      const spyIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((en) => {
+            if (en.isIntersecting) {
+              const id = (en.target as HTMLElement).id;
+              spyLinks.forEach((a) =>
+                a.classList.toggle("is-active", a.getAttribute("data-spy") === id),
+              );
+            }
+          });
+        },
+        { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
+      );
+      spyLinks.forEach((a) => {
+        const s = document.getElementById(a.getAttribute("data-spy")!);
+        if (s) spyIO.observe(s);
+      });
+      cleanup.push(() => spyIO.disconnect());
+    }
+
     // Respeita usuários que pedem menos movimento: nada de aurora, cursor custom,
     // tilt 3D ou reveals animados. O conteúdo aparece estático (CSS pausa marquee/blobs).
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
