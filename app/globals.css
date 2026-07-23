@@ -676,6 +676,9 @@ img {
 .proj-card {
   display: flex;
   flex-direction: column;
+  /* min-width:0 deixa o card encolher no grid; sem isso a URL longa do rodapé
+     não quebra e estoura pela lateral direita. */
+  min-width: 0;
   background: color-mix(in oklab, white 55%, var(--bg) 45%);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
@@ -737,6 +740,8 @@ img {
   font-family: var(--font-mono), monospace;
   font-size: 13px;
   color: var(--accent-700);
+  /* quebra a URL longa em vez de estourar o card */
+  overflow-wrap: anywhere;
 }
 
 /* contato */
@@ -802,6 +807,10 @@ img {
 .contact-value {
   font-size: 17px;
   font-weight: 600;
+  /* deixa o valor (ex.: e-mail longo) encolher e quebrar em vez de estourar o flex */
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
 }
 
 /* footer */
