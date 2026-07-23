@@ -1220,38 +1220,6 @@ a:focus-visible,
   }
 }
 
-/* ═══ Toque: feedback ao tocar (equivalente ao hover/tilt do desktop) ═══ */
-@media (hover: none) {
-  a,
-  button {
-    /* tiramos o flash cinza padrão do mobile — o feedback abaixo é o nosso */
-    -webkit-tap-highlight-color: transparent;
-  }
-  .btn,
-  .proj-card,
-  .proj-featured-main,
-  .contact-link {
-    transition:
-      transform 0.18s ease,
-      background 0.25s,
-      box-shadow 0.3s;
-  }
-  .btn:active,
-  .proj-card:active,
-  .proj-featured-main:active,
-  .contact-link:active {
-    transform: scale(0.985);
-  }
-  .nav-link:active,
-  .contact-link:active {
-    background: var(--accent-100);
-  }
-  .proj-card:active,
-  .proj-featured-main:active {
-    box-shadow: var(--shadow-md);
-  }
-}
-
 /* ═══ Acessibilidade: menos movimento ═══ */
 @media (prefers-reduced-motion: reduce) {
   html {
