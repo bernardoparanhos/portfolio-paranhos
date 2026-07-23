@@ -256,14 +256,34 @@ img {
   color: var(--text);
 }
 .nav-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
   background: var(--text);
-  color: var(--bg);
+  padding: 3px;
+  border-radius: 999px;
+}
+.lang-btn {
   font-family: var(--font-mono), monospace;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  padding: 9px 16px;
+  color: var(--n300);
+  background: transparent;
+  border: none;
+  padding: 6px 11px;
   border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.lang-btn:hover {
+  color: var(--bg);
+}
+.lang-btn.active {
+  background: var(--bg);
+  color: var(--text);
 }
 /* botão hambúrguer — escondido no desktop, aparece no mobile */
 .nav-toggle {
@@ -805,7 +825,18 @@ img {
 /* ═══ Responsivo ═══ */
 @media (max-width: 960px) {
   .container {
-    padding: 0 28px;
+    padding: 0 32px;
+  }
+  /* seções carregam o próprio gutter lateral (as regras base usam horizontal 0,
+     que só funciona centralizado no desktop; no mobile precisam de respiro) */
+  .hero {
+    padding: 84px 32px 56px;
+  }
+  .section {
+    padding: 72px 32px 64px;
+  }
+  .section-mid {
+    padding: 32px 32px 64px;
   }
   /* nav vira barra full-width com hambúrguer à direita */
   .nav-wrap {
@@ -901,10 +932,10 @@ img {
 /* ═══ Responsivo — telas pequenas (celular) ═══ */
 @media (max-width: 560px) {
   .container {
-    padding: 0 20px;
+    padding: 0 24px;
   }
   .hero {
-    padding: 72px 0 56px;
+    padding: 64px 24px 48px;
   }
   .hero-title {
     font-size: clamp(38px, 11vw, 54px);
@@ -923,10 +954,10 @@ img {
     flex: 1 1 auto;
   }
   .section {
-    padding: 64px 0 56px;
+    padding: 56px 24px 48px;
   }
   .section-mid {
-    padding: 32px 0 56px;
+    padding: 28px 24px 48px;
   }
   .sec-num {
     font-size: 48px;

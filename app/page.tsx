@@ -1,44 +1,82 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Effects from "@/components/Effects";
 import portrait from "@/public/foto-perfil.jpeg";
-
-const MARQUEE =
-  "Engenharia de Produção\u00A0\u00A0✺\u00A0\u00A0Dados\u00A0\u00A0✺\u00A0\u00A0IA aplicada\u00A0\u00A0✺\u00A0\u00A0Processos\u00A0\u00A0✺\u00A0\u00A0KPIs de manutenção\u00A0\u00A0✺\u00A0\u00A0Full Stack\u00A0\u00A0✺\u00A0\u00A0Gestão\u00A0\u00A0✺\u00A0\u00A0";
+import { translations, type Lang } from "./i18n";
 
 export default function Home() {
+  const [lang, setLang] = useState<Lang>("pt");
+
+  // Restaura o idioma salvo (só no cliente, pra não quebrar a hidratação do SSR:
+  // o HTML é sempre pré-renderizado em pt e ajustado aqui após a montagem).
+  useEffect(() => {
+    const saved = localStorage.getItem("lang");
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (saved === "en") setLang(saved);
+  }, []);
+
+  // Aplica o idioma: <html lang>, persistência e avisa o marquee para se refazer.
+  useEffect(() => {
+    const t = translations[lang];
+    document.documentElement.lang = t.htmlLang;
+    localStorage.setItem("lang", lang);
+    window.dispatchEvent(new Event("langchange"));
+  }, [lang]);
+
+  const t = translations[lang];
+
   return (
     <div className="page">
       <Effects />
 
       {/* NAV */}
       <div className="nav-wrap">
-        <nav id="siteNav" className="nav" aria-label="Navegação principal">
+        <nav id="siteNav" className="nav" aria-label={t.nav.main}>
           <a href="#hero" className="nav-brand">
             Bernardo P.
           </a>
           <div id="navLinks" className="nav-links">
             <a href="#sobre" className="nav-link">
-              Sobre
+              {t.nav.about}
             </a>
             <a href="#formacao" className="nav-link">
-              Formação
+              {t.nav.education}
             </a>
             <a href="#experiencia" className="nav-link">
-              Experiência
+              {t.nav.experience}
             </a>
             <a href="#projetos" className="nav-link">
-              Projetos
+              {t.nav.projects}
             </a>
             <a href="#contato" className="nav-link">
-              Contato
+              {t.nav.contact}
             </a>
           </div>
-          <span className="nav-lang">PT / EN</span>
+          <div className="nav-lang" role="group" aria-label={t.nav.langLabel}>
+            <button
+              type="button"
+              className={`lang-btn${lang === "pt" ? " active" : ""}`}
+              aria-pressed={lang === "pt"}
+              onClick={() => setLang("pt")}
+            >
+              PT
+            </button>
+            <button
+              type="button"
+              className={`lang-btn${lang === "en" ? " active" : ""}`}
+              aria-pressed={lang === "en"}
+              onClick={() => setLang("en")}
+            >
+              EN
+            </button>
+          </div>
           <button
             id="navToggle"
             type="button"
             className="nav-toggle"
-            aria-label="Abrir menu"
+            aria-label={t.nav.menu}
             aria-expanded="false"
             aria-controls="navLinks"
           >
@@ -53,23 +91,21 @@ export default function Home() {
         {/* HERO */}
         <section id="hero" className="container hero">
           <div data-reveal className="eyebrow">
-            Engenharia de Produção · UTFPR Medianeira
+            {t.hero.eyebrow}
           </div>
           <h1 data-reveal className="hero-title">
-            Engenheiro de Produção que resolve <em>problemas de verdade.</em>
+            {t.hero.titleLead}
+            <em>{t.hero.titleEm}</em>
           </h1>
           <div data-reveal className="hero-grid">
             <div>
-              <p className="hero-sub">
-                Do controle de KPIs de manutenção a uma plataforma de IA para a universidade —
-                aplico o que aprendo enquanto ainda estou aprendendo.
-              </p>
+              <p className="hero-sub">{t.hero.sub}</p>
               <div className="hero-ctas">
                 <a href="#projetos" className="btn btn-primary">
-                  Ver projetos
+                  {t.hero.ctaProjects}
                 </a>
                 <a href="#contato" className="btn btn-secondary">
-                  Vamos conversar
+                  {t.hero.ctaTalk}
                 </a>
               </div>
             </div>
@@ -79,21 +115,21 @@ export default function Home() {
                   <span className="metric-num">1</span>
                   <span className="metric-deg" />
                 </div>
-                <div className="metric-label">InovaGrad 2025</div>
-                <div className="metric-sub">1º lugar no edital</div>
+                <div className="metric-label">{t.metrics.m1Label}</div>
+                <div className="metric-sub">{t.metrics.m1Sub}</div>
               </div>
               <div data-tilt className="metric">
                 <span className="metric-num sage">2</span>
-                <div className="metric-label">Projetos reais</div>
-                <div className="metric-sub">Em produção</div>
+                <div className="metric-label">{t.metrics.m2Label}</div>
+                <div className="metric-sub">{t.metrics.m2Sub}</div>
               </div>
               <div data-tilt className="metric">
                 <div className="metric-num-row">
                   <span className="metric-num">2</span>
                   <span className="metric-deg" style={{ width: 11, height: 11 }} />
                 </div>
-                <div className="metric-label">Período</div>
-                <div className="metric-sub">UTFPR · 2026</div>
+                <div className="metric-label">{t.metrics.m3Label}</div>
+                <div className="metric-sub">{t.metrics.m3Sub}</div>
               </div>
             </div>
           </div>
@@ -102,7 +138,7 @@ export default function Home() {
         {/* MARQUEE */}
         <div className="marquee">
           <div id="marquee-track" className="marquee-track">
-            <span className="marquee-item">{MARQUEE}</span>
+            <span className="marquee-item">{t.marquee}</span>
           </div>
         </div>
 
@@ -110,7 +146,7 @@ export default function Home() {
         <section id="sobre" className="container section">
           <div data-reveal className="sec-head sec-head-lg">
             <span className="sec-num">01</span>
-            <span className="sec-label">Sobre</span>
+            <span className="sec-label">{t.sections.about}</span>
           </div>
           <div className="about-grid">
             <div data-reveal className="portrait-wrap">
@@ -125,30 +161,22 @@ export default function Home() {
                   style={{ objectFit: "cover" }}
                 />
               </div>
-              <div className="portrait-badge">Medianeira · PR</div>
+              <div className="portrait-badge">{t.about.badge}</div>
             </div>
             <div data-reveal>
               <p className="about-lead">
-                Resolvo problemas com organização, dados e um pouco de{" "}
-                <span className="sage-word">código.</span>
+                {t.about.leadLead}
+                <span className="sage-word">{t.about.leadAccent}</span>
               </p>
-              <p className="about-body">
-                Estudante de Engenharia de Produção na UTFPR Medianeira, com interesse real em como
-                tecnologia pode resolver problemas de gestão. Desenvolvo uma plataforma de IA para
-                nivelamento de alunos ingressantes em Engenharia como bolsista InovaGrad — projeto
-                aprovado em 1º lugar no edital da universidade. Estagio em consultoria de gestão,
-                onde trabalho diretamente com organização de processos e dados de clientes. Gosto de
-                programar e vejo isso como diferencial dentro da Engenharia de Produção, não como
-                desvio de rota.
-              </p>
-              <div className="lang-label">Idiomas</div>
+              <p className="about-body">{t.about.body}</p>
+              <div className="lang-label">{t.about.languagesLabel}</div>
               <div className="lang-row">
-                <span className="lang-name">Português</span>
-                <span className="tag tag-accent2">Nativo</span>
+                <span className="lang-name">{t.about.ptName}</span>
+                <span className="tag tag-accent2">{t.about.ptLevel}</span>
               </div>
               <div className="lang-row">
-                <span className="lang-name">Inglês</span>
-                <span className="tag tag-outline">Básico · em aprendizado</span>
+                <span className="lang-name">{t.about.enName}</span>
+                <span className="tag tag-outline">{t.about.enLevel}</span>
               </div>
             </div>
           </div>
@@ -158,18 +186,16 @@ export default function Home() {
         <section id="formacao" className="container section-mid">
           <div data-reveal className="sec-head">
             <span className="sec-num">02</span>
-            <span className="sec-label">Formação</span>
+            <span className="sec-label">{t.sections.education}</span>
           </div>
           <div data-reveal data-tilt className="edu-card">
             <div className="edu-circle" />
             <div className="edu-content">
-              <h3 className="edu-degree">Bacharelado em Engenharia de Produção</h3>
-              <div className="edu-school">Universidade Tecnológica Federal do Paraná</div>
-              <div className="edu-meta">
-                Campus Medianeira · PR&nbsp;&nbsp;/&nbsp;&nbsp;2025 — 2030 (previsto)
-              </div>
+              <h3 className="edu-degree">{t.education.degree}</h3>
+              <div className="edu-school">{t.education.school}</div>
+              <div className="edu-meta">{t.education.meta}</div>
               <div className="edu-tag-row">
-                <span className="tag tag-accent">2º período · em andamento</span>
+                <span className="tag tag-accent">{t.education.tag}</span>
               </div>
             </div>
             <a
@@ -178,7 +204,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="btn btn-secondary edu-btn"
             >
-              Ver grade curricular
+              {t.education.btn}
             </a>
           </div>
         </section>
@@ -187,23 +213,15 @@ export default function Home() {
         <section id="experiencia" className="container section-mid">
           <div data-reveal className="sec-head">
             <span className="sec-num">03</span>
-            <span className="sec-label">Experiência</span>
+            <span className="sec-label">{t.sections.experience}</span>
           </div>
           <div className="exp-list">
             <div data-reveal className="exp-row">
-              <div className="exp-date">Abr 2026 — Presente</div>
+              <div className="exp-date">{t.exp1.date}</div>
               <div>
-                <h3 className="exp-role">Fundador &amp; Desenvolvedor Full Stack — MAT-IA</h3>
-                <div className="exp-org">UTFPR / InovaGrad</div>
-                <p className="exp-desc">
-                  Desenvolvo do zero uma plataforma web educacional com IA para diagnóstico e
-                  nivelamento em matemática de alunos ingressantes em Engenharia. Aprovado em 1º
-                  lugar no edital InovaGrad 2025 com nota 9,6 entre candidatos de toda a UTFPR. A
-                  plataforma conta com diagnóstico adaptativo de 20 questões, banco de 500+
-                  exercícios em 10 blocos temáticos, correção automática de resoluções manuscritas
-                  via GPT-4o Vision, gamificação com ranking em tempo real e relatórios para
-                  professores via Google Sheets.
-                </p>
+                <h3 className="exp-role">{t.exp1.role}</h3>
+                <div className="exp-org">{t.exp1.org}</div>
+                <p className="exp-desc">{t.exp1.desc}</p>
                 <div className="tag-row">
                   <span className="tag tag-outline">React</span>
                   <span className="tag tag-outline">Node.js</span>
@@ -215,27 +233,19 @@ export default function Home() {
               </div>
             </div>
             <div data-reveal className="exp-row">
-              <div className="exp-date">Jun 2026 — Presente</div>
+              <div className="exp-date">{t.exp2.date}</div>
               <div>
-                <h3 className="exp-role">Estagiário de Engenharia de Produção — Operacional</h3>
-                <div className="exp-org">AntiFrágil — Gestão &amp; Consultoria</div>
-                <p className="exp-desc exp-desc-tight">
-                  Atuo no setor operacional de uma consultoria de gestão e processos, com contato
-                  direto com clientes e participação nas atividades de análise de processos das
-                  empresas atendidas.
-                </p>
+                <h3 className="exp-role">{t.exp2.role}</h3>
+                <div className="exp-org">{t.exp2.org}</div>
+                <p className="exp-desc exp-desc-tight">{t.exp2.desc}</p>
                 <ul className="exp-bullets">
-                  <li>
-                    Gestão da comunicação recorrente com carteira de 26 clientes com acompanhamento
-                    semanal de planos de ação.
-                  </li>
-                  <li>Elaboração de relatórios gerenciais.</li>
-                  <li>Acompanhamento de reuniões.</li>
-                  <li>Mapeamento de processos.</li>
+                  {t.exp2.bullets.map((b, i) => (
+                    <li key={i}>{b}</li>
+                  ))}
                 </ul>
                 <div className="tag-row">
                   <span className="tag tag-outline">Microsoft Excel</span>
-                  <span className="tag tag-outline">Comunicação com clientes</span>
+                  <span className="tag tag-outline">{t.exp2.tagCommunication}</span>
                 </div>
               </div>
             </div>
@@ -246,7 +256,7 @@ export default function Home() {
         <section id="projetos" className="container section-mid">
           <div data-reveal className="sec-head">
             <span className="sec-num">04</span>
-            <span className="sec-label">Projetos</span>
+            <span className="sec-label">{t.sections.projects}</span>
           </div>
           <div className="proj-grid">
             <a
@@ -258,10 +268,10 @@ export default function Home() {
               className="proj-card"
             >
               <div className="proj-head">
-                <h3 className="proj-name">Simulador PCM</h3>
+                <h3 className="proj-name">{t.proj1.name}</h3>
                 <span className="proj-status">
                   <span className="status-dot sage" />
-                  Disponível
+                  {t.proj1.status}
                 </span>
               </div>
               <div className="proj-stack">
@@ -270,12 +280,7 @@ export default function Home() {
                 <span className="tag tag-neutral">NumPy</span>
                 <span className="tag tag-neutral">openpyxl</span>
               </div>
-              <p className="proj-desc">
-                Gerador de KPIs de manutenção industrial para PCM. Simula equipamentos por
-                criticidade (Alta/Média/Baixa) e gera indicadores reais: MTBF, MTTR,
-                disponibilidade, taxa de corretivas e custo por ordem. Exporta relatórios em Excel
-                com 7 abas analíticas e CSVs prontos para Power BI ou Tableau.
-              </p>
+              <p className="proj-desc">{t.proj1.desc}</p>
               <span className="proj-link">github.com/bernardoparanhos/gerador_kpis.py →</span>
             </a>
             <a
@@ -287,10 +292,10 @@ export default function Home() {
               className="proj-card"
             >
               <div className="proj-head">
-                <h3 className="proj-name">MAT-IA</h3>
+                <h3 className="proj-name">{t.proj2.name}</h3>
                 <span className="proj-status">
                   <span className="status-dot" />
-                  Em produção
+                  {t.proj2.status}
                 </span>
               </div>
               <div className="proj-stack">
@@ -301,12 +306,7 @@ export default function Home() {
                 <span className="tag tag-neutral">Tailwind</span>
                 <span className="tag tag-neutral">Vercel</span>
               </div>
-              <p className="proj-desc">
-                Plataforma web educacional com IA para diagnóstico e nivelamento em matemática de
-                alunos ingressantes em Engenharia. Diagnóstico adaptativo de 20 questões, banco de
-                500+ exercícios em 10 blocos temáticos e relatórios para professores via Google
-                Sheets. Aprovado em 1º lugar no InovaGrad 2025 com nota 9,6.
-              </p>
+              <p className="proj-desc">{t.proj2.desc}</p>
               <span className="proj-link">mat-ia-plataform.vercel.app →</span>
             </a>
           </div>
@@ -316,22 +316,20 @@ export default function Home() {
         <section id="contato" className="container" style={{ paddingTop: 40 }}>
           <div data-reveal className="sec-head">
             <span className="sec-num">05</span>
-            <span className="sec-label">Contato</span>
+            <span className="sec-label">{t.sections.contact}</span>
           </div>
           <div className="contact-grid">
             <div data-reveal className="contact-headline">
               <div className="blob blob-contact" />
               <h2 className="contact-title">
-                Vamos <span className="accent-word">conversar.</span>
+                {t.contact.titleLead}
+                <span className="accent-word">{t.contact.titleAccent}</span>
               </h2>
-              <p className="contact-sub">
-                Aberto a projetos, pesquisas colaborativas e novas conexões nas áreas de operações,
-                IA aplicada e engenharia de processos.
-              </p>
+              <p className="contact-sub">{t.contact.sub}</p>
             </div>
             <div data-reveal className="contact-links">
               <a href="mailto:beparanhosborges@gmail.com" className="contact-link">
-                <span className="contact-label">Email</span>
+                <span className="contact-label">{t.contact.emailLabel}</span>
                 <span className="contact-value">beparanhosborges@gmail.com</span>
               </a>
               <a
@@ -355,7 +353,7 @@ export default function Home() {
             </div>
           </div>
           <footer className="footer">
-            <span>Bernardo Paranhos — Engenharia de Produção · UTFPR Medianeira · 2026</span>
+            <span>{t.footer}</span>
             <span className="footer-mark">✺</span>
           </footer>
         </section>

@@ -20,7 +20,12 @@ export default function Effects() {
     fillMarquee();
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fillMarquee);
     window.addEventListener("resize", fillMarquee, { passive: true });
-    cleanup.push(() => window.removeEventListener("resize", fillMarquee));
+    // Refaz o marquee quando o idioma muda (o texto base é substituído pelo React).
+    window.addEventListener("langchange", fillMarquee);
+    cleanup.push(() => {
+      window.removeEventListener("resize", fillMarquee);
+      window.removeEventListener("langchange", fillMarquee);
+    });
 
     // Menu hambúrguer (mobile): abre/fecha o dropdown, com a11y (aria-expanded),
     // fecha ao clicar num link, clicar fora ou apertar Esc. Roda sempre (mesmo com
@@ -32,7 +37,6 @@ export default function Effects() {
       const setNav = (open: boolean) => {
         nav.classList.toggle("nav-open", open);
         navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-        navToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
       };
       const onToggle = (e: MouseEvent) => {
         e.stopPropagation();
