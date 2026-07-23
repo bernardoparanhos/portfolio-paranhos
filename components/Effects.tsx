@@ -22,6 +22,42 @@ export default function Effects() {
     window.addEventListener("resize", fillMarquee, { passive: true });
     cleanup.push(() => window.removeEventListener("resize", fillMarquee));
 
+    // Menu hambúrguer (mobile): abre/fecha o dropdown, com a11y (aria-expanded),
+    // fecha ao clicar num link, clicar fora ou apertar Esc. Roda sempre (mesmo com
+    // reduced-motion) pois é navegação, não decoração.
+    const nav = document.getElementById("siteNav");
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+    if (nav && navToggle && navLinks) {
+      const setNav = (open: boolean) => {
+        nav.classList.toggle("nav-open", open);
+        navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        navToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      };
+      const onToggle = (e: MouseEvent) => {
+        e.stopPropagation();
+        setNav(!nav.classList.contains("nav-open"));
+      };
+      const onLink = () => setNav(false);
+      const onDocClick = (e: MouseEvent) => {
+        if (nav.classList.contains("nav-open") && !nav.contains(e.target as Node)) setNav(false);
+      };
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === "Escape") setNav(false);
+      };
+      navToggle.addEventListener("click", onToggle);
+      const links = Array.from(navLinks.querySelectorAll("a"));
+      links.forEach((a) => a.addEventListener("click", onLink));
+      document.addEventListener("click", onDocClick);
+      document.addEventListener("keydown", onKey);
+      cleanup.push(() => {
+        navToggle.removeEventListener("click", onToggle);
+        links.forEach((a) => a.removeEventListener("click", onLink));
+        document.removeEventListener("click", onDocClick);
+        document.removeEventListener("keydown", onKey);
+      });
+    }
+
     // Respeita usuários que pedem menos movimento: nada de aurora, cursor custom,
     // tilt 3D ou reveals animados. O conteúdo aparece estático (CSS pausa marquee/blobs).
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");

@@ -12,11 +12,11 @@ export default function Home() {
 
       {/* NAV */}
       <div className="nav-wrap">
-        <nav className="nav" aria-label="Navegação principal">
+        <nav id="siteNav" className="nav" aria-label="Navegação principal">
           <a href="#hero" className="nav-brand">
             Bernardo P.
           </a>
-          <div className="nav-links">
+          <div id="navLinks" className="nav-links">
             <a href="#sobre" className="nav-link">
               Sobre
             </a>
@@ -34,6 +34,18 @@ export default function Home() {
             </a>
           </div>
           <span className="nav-lang">PT / EN</span>
+          <button
+            id="navToggle"
+            type="button"
+            className="nav-toggle"
+            aria-label="Abrir menu"
+            aria-expanded="false"
+            aria-controls="navLinks"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </nav>
       </div>
 
