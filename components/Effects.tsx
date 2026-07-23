@@ -161,40 +161,76 @@ export default function Effects() {
       raf = requestAnimationFrame(loop);
     };
 
-    const onMove = (e: MouseEvent) => {
+    // Em telas de toque a aurora também é guiada pelo scroll (parallax suave), pra
+    // ter vida mesmo quando ninguém está com o dedo na tela.
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    let touching = false;
+    const auroraFromScroll = () => {
+      if (!coarse || touching) return;
+      const doc = document.documentElement;
+      const p =
+        doc.scrollHeight > window.innerHeight
+          ? window.scrollY / (doc.scrollHeight - window.innerHeight)
+          : 0;
+      tx = window.innerWidth * (0.3 + 0.4 * p);
+      ty = window.innerHeight * (0.28 + 0.34 * p);
+    };
+    if (coarse) auroraFromScroll();
+
+    // Pointer Events unificam mouse, toque e caneta: a aurora segue qualquer um deles,
+    // mas o cursor custom (anel + ponto) continua exclusivo do mouse.
+    const onMove = (e: PointerEvent) => {
       tx = e.clientX;
       ty = e.clientY;
-      mx = e.clientX;
-      my = e.clientY;
-      const t = e.target as HTMLElement | null;
-      hoverLink = !!(t && t.closest && t.closest("a, button, .btn"));
-      if (ring) ring.style.opacity = "1";
-      if (dot) dot.style.opacity = "1";
+      if (e.pointerType === "mouse") {
+        mx = e.clientX;
+        my = e.clientY;
+        const t = e.target as HTMLElement | null;
+        hoverLink = !!(t && t.closest && t.closest("a, button, .btn"));
+        if (ring) ring.style.opacity = "1";
+        if (dot) dot.style.opacity = "1";
+      }
       startLoop();
+    };
+    const onDown = (e: PointerEvent) => {
+      if (e.pointerType !== "mouse") touching = true;
+    };
+    const onUp = () => {
+      touching = false;
     };
     const onLeaveDoc = () => {
       if (ring) ring.style.opacity = "0";
       if (dot) dot.style.opacity = "0";
     };
-    const onScroll = () => startLoop();
+    const onScroll = () => {
+      auroraFromScroll();
+      startLoop();
+    };
     const onVisibility = () => {
       if (document.hidden) stopLoop();
       else startLoop();
     };
 
-    document.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("pointermove", onMove, { passive: true });
+    document.addEventListener("pointerdown", onDown, { passive: true });
+    document.addEventListener("pointerup", onUp, { passive: true });
+    document.addEventListener("pointercancel", onUp, { passive: true });
     document.documentElement.addEventListener("mouseleave", onLeaveDoc);
     window.addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
     startLoop();
 
-    if (window.matchMedia("(min-width: 961px)").matches) {
+    // esconde o cursor real só onde existe mouse de verdade
+    if (window.matchMedia("(min-width: 961px) and (pointer: fine)").matches) {
       document.body.style.cursor = "none";
     }
 
     cleanup.push(() => {
       stopLoop();
-      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerdown", onDown);
+      document.removeEventListener("pointerup", onUp);
+      document.removeEventListener("pointercancel", onUp);
       document.documentElement.removeEventListener("mouseleave", onLeaveDoc);
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("visibilitychange", onVisibility);
@@ -203,7 +239,9 @@ export default function Effects() {
 
     // tilt 3D nos cards
     document.querySelectorAll<HTMLElement>("[data-tilt]").forEach((el) => {
-      const move = (e: MouseEvent) => {
+      const move = (e: PointerEvent) => {
+        // toque não faz tilt (não há "sair de cima" no touch: o card ficaria torto)
+        if (e.pointerType !== "mouse") return;
         const r = el.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
@@ -216,11 +254,11 @@ export default function Effects() {
         el.style.transform = "";
         el.style.transition = "transform .45s cubic-bezier(.16,1,.3,1)";
       };
-      el.addEventListener("mousemove", move, { passive: true });
-      el.addEventListener("mouseleave", leave);
+      el.addEventListener("pointermove", move, { passive: true });
+      el.addEventListener("pointerleave", leave);
       cleanup.push(() => {
-        el.removeEventListener("mousemove", move);
-        el.removeEventListener("mouseleave", leave);
+        el.removeEventListener("pointermove", move);
+        el.removeEventListener("pointerleave", leave);
       });
     });
 
