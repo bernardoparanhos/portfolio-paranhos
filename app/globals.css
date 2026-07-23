@@ -744,6 +744,195 @@ img {
   overflow-wrap: anywhere;
 }
 
+/* ═══ Projetos: card em destaque (MAT-IA) ═══ */
+.proj-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.proj-featured {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  background: color-mix(in oklab, white 55%, var(--bg) 45%);
+  border: 1px solid var(--n200);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+.proj-featured:hover {
+  box-shadow: var(--shadow-lg);
+}
+.proj-featured-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 38px 40px;
+  color: inherit;
+}
+.proj-featured-main:hover {
+  color: inherit;
+}
+.proj-tagline {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  color: var(--n500);
+  margin-top: 9px;
+  max-width: 32ch;
+}
+.proj-featured-main .proj-desc {
+  flex-grow: 1;
+}
+.proj-stats {
+  display: flex;
+  margin: 6px 0 24px;
+}
+.proj-stat {
+  flex: 1;
+  padding-right: 16px;
+}
+.proj-stat + .proj-stat {
+  padding-left: 18px;
+  border-left: 1px solid var(--n200);
+}
+.proj-stat-num {
+  font-family: var(--font-heading), serif;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--text);
+}
+.proj-stat-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--n500);
+  margin-top: 7px;
+}
+/* painel visual à direita */
+.proj-featured-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  min-width: 0;
+  padding: 30px;
+  background: color-mix(in oklab, var(--bg) 58%, white 42%);
+  border-left: 1px solid var(--n200);
+}
+.matia-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  background: color-mix(in oklab, white 62%, var(--bg) 38%);
+  border: 1px solid var(--n200);
+  border-radius: 16px;
+}
+.matia-badge svg {
+  width: 22px;
+  height: 22px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.matia-badge-title {
+  font-weight: 700;
+  font-size: 13.5px;
+}
+.matia-badge-sub {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--n500);
+  margin-top: 3px;
+}
+.matia-window {
+  padding: 16px 18px 18px;
+  background: color-mix(in oklab, white 66%, var(--bg) 34%);
+  border: 1px solid var(--n200);
+  border-radius: 18px;
+}
+.matia-window-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.matia-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--n300);
+}
+.matia-dot:nth-child(1) {
+  background: var(--accent);
+}
+.matia-dot:nth-child(2) {
+  background: var(--accent2);
+}
+.matia-window-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--n500);
+  margin-left: 6px;
+}
+.matia-diag {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.matia-ring {
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: conic-gradient(var(--accent) 0 84%, var(--accent2-200) 84% 100%);
+  -webkit-mask: radial-gradient(closest-side, transparent 64%, #000 65%);
+  mask: radial-gradient(closest-side, transparent 64%, #000 65%);
+}
+.matia-pct {
+  font-family: var(--font-heading), serif;
+  font-size: 30px;
+  line-height: 1;
+}
+.matia-pct-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--n500);
+  margin-top: 6px;
+}
+.matia-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 56px;
+}
+.matia-bars span {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  background: var(--accent2-200);
+}
+.matia-bars span:nth-child(2) {
+  background: var(--accent2);
+}
+.matia-bars span:nth-child(4) {
+  background: var(--accent);
+}
+.matia-bars span:nth-child(5) {
+  background: var(--accent-600);
+}
+.matia-bars-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--n500);
+  margin-top: 10px;
+}
+
 /* contato */
 .contact-grid {
   display: grid;
@@ -912,6 +1101,14 @@ img {
     grid-template-columns: 1fr;
     gap: 40px;
   }
+  /* card em destaque empilha: painel visual vai pra baixo */
+  .proj-featured {
+    grid-template-columns: 1fr;
+  }
+  .proj-featured-side {
+    border-left: none;
+    border-top: 1px solid var(--n200);
+  }
   .metrics {
     flex-wrap: wrap;
   }
@@ -982,6 +1179,15 @@ img {
   }
   .proj-card {
     padding: 30px 26px;
+  }
+  .proj-featured-main {
+    padding: 28px 24px;
+  }
+  .proj-featured-side {
+    padding: 24px;
+  }
+  .proj-stat-num {
+    font-size: 25px;
   }
   .proj-name {
     font-size: 26px;

@@ -63,7 +63,7 @@ const pt = {
     date: "Abr 2026 — Presente",
     role: "Fundador & Desenvolvedor Full Stack — MAT-IA",
     org: "UTFPR / InovaGrad",
-    desc: "Desenvolvo do zero uma plataforma web educacional com IA para diagnóstico e nivelamento em matemática de alunos ingressantes em Engenharia. Aprovado em 1º lugar no edital InovaGrad 2025 com nota 9,6 entre candidatos de toda a UTFPR. A plataforma conta com diagnóstico adaptativo de 20 questões, banco de 500+ exercícios em 10 blocos temáticos, correção automática de resoluções manuscritas via GPT-4o Vision, gamificação com ranking em tempo real e relatórios para professores via Google Sheets.",
+    desc: "Desenvolvo do zero uma plataforma web educacional com IA para diagnóstico e nivelamento em matemática de alunos ingressantes em Engenharia. Aprovado em 1º lugar no edital InovaGrad 2025 com nota 9,6 entre candidatos de toda a UTFPR. A plataforma conta com diagnóstico adaptativo de 20 questões, banco de 650+ exercícios em 10+ blocos temáticos, correção automática de resoluções manuscritas via GPT-4o Vision, gamificação com ranking em tempo real e relatórios para professores via Google Sheets.",
   },
   exp2: {
     date: "Jun 2026 — Presente",
@@ -86,7 +86,22 @@ const pt = {
   proj2: {
     name: "MAT-IA",
     status: "Em produção",
-    desc: "Plataforma web educacional com IA para diagnóstico e nivelamento em matemática de alunos ingressantes em Engenharia. Diagnóstico adaptativo de 20 questões, banco de 500+ exercícios em 10 blocos temáticos e relatórios para professores via Google Sheets. Aprovado em 1º lugar no InovaGrad 2025 com nota 9,6.",
+    tagline: "Plataforma de Suporte Inteligente ao Aprendizado de Matemática",
+    desc: "Sistema educacional com IA para diagnóstico, nivelamento e reforço em matemática de ingressantes em Engenharia na UTFPR Medianeira. Como bolsista encarregado do projeto, conduzo o MAT-IA do escopo à execução — planejamento, coordenação com os professores e indicadores de acompanhamento — aplicando gestão de projetos e engenharia de produção a um produto real em produção.",
+    link: "plataformamati.dev →",
+    stats: [
+      { num: "+650", label: "questões" },
+      { num: "+10", label: "blocos temáticos" },
+      { num: "20", label: "Q. diagnóstico" },
+    ],
+    panel: {
+      award: "1º lugar · InovaGrad 2025",
+      grade: "nota final 9,6",
+      window: "diagnóstico",
+      donut: "84%",
+      donutLabel: "nível dominado",
+      barsLabel: "desempenho por bloco temático",
+    },
   },
   contact: {
     titleLead: "Vamos ",
@@ -156,7 +171,7 @@ const en: typeof pt = {
     date: "Apr 2026 — Present",
     role: "Founder & Full Stack Developer — MAT-IA",
     org: "UTFPR / InovaGrad",
-    desc: "I'm building from scratch an educational web platform with AI for math diagnosis and leveling of incoming Engineering students. Approved in 1st place in the InovaGrad 2025 call with a 9.6 score among candidates across all of UTFPR. The platform features a 20-question adaptive diagnosis, a bank of 500+ exercises in 10 thematic blocks, automatic grading of handwritten solutions via GPT-4o Vision, gamification with a real-time ranking, and reports for teachers via Google Sheets.",
+    desc: "I'm building from scratch an educational web platform with AI for math diagnosis and leveling of incoming Engineering students. Approved in 1st place in the InovaGrad 2025 call with a 9.6 score among candidates across all of UTFPR. The platform features a 20-question adaptive diagnosis, a bank of 650+ exercises in 10+ thematic blocks, automatic grading of handwritten solutions via GPT-4o Vision, gamification with a real-time ranking, and reports for teachers via Google Sheets.",
   },
   exp2: {
     date: "Jun 2026 — Present",
@@ -179,7 +194,22 @@ const en: typeof pt = {
   proj2: {
     name: "MAT-IA",
     status: "In production",
-    desc: "An educational web platform with AI for math diagnosis and leveling of incoming Engineering students. 20-question adaptive diagnosis, a bank of 500+ exercises in 10 thematic blocks, and reports for teachers via Google Sheets. Approved in 1st place in InovaGrad 2025 with a 9.6 score.",
+    tagline: "Intelligent Support Platform for Math Learning",
+    desc: "AI-powered educational system for math diagnosis, leveling and reinforcement for incoming Engineering students at UTFPR Medianeira. As the fellow in charge of the project, I lead MAT-IA from scope to execution — planning, coordination with professors and tracking indicators — applying project management and production engineering to a real product in production.",
+    link: "plataformamati.dev →",
+    stats: [
+      { num: "+650", label: "questions" },
+      { num: "+10", label: "thematic blocks" },
+      { num: "20", label: "diagnostic Qs" },
+    ],
+    panel: {
+      award: "1st place · InovaGrad 2025",
+      grade: "final grade 9.6",
+      window: "diagnostic",
+      donut: "84%",
+      donutLabel: "level mastered",
+      barsLabel: "performance by thematic block",
+    },
   },
   contact: {
     titleLead: "Let's ",

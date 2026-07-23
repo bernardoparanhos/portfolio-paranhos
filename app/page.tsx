@@ -258,14 +258,93 @@ export default function Home() {
             <span className="sec-num">04</span>
             <span className="sec-label">{t.sections.projects}</span>
           </div>
-          <div className="proj-grid">
+          <div className="proj-list">
+            {/* MAT-IA — projeto em destaque */}
+            <article data-reveal className="proj-featured">
+              <a
+                href="https://landing.plataformamati.dev/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="proj-featured-main"
+              >
+                <div className="proj-head">
+                  <div>
+                    <h3 className="proj-name">{t.proj2.name}</h3>
+                    <div className="proj-tagline">{t.proj2.tagline}</div>
+                  </div>
+                  <span className="proj-status">
+                    <span className="status-dot" />
+                    {t.proj2.status}
+                  </span>
+                </div>
+                <div className="proj-stack">
+                  <span className="tag tag-neutral">React</span>
+                  <span className="tag tag-neutral">Node.js</span>
+                  <span className="tag tag-neutral">PostgreSQL</span>
+                  <span className="tag tag-neutral">OpenAI</span>
+                  <span className="tag tag-neutral">Tailwind</span>
+                </div>
+                <p className="proj-desc">{t.proj2.desc}</p>
+                <div className="proj-stats">
+                  {t.proj2.stats.map((s, i) => (
+                    <div key={i} className="proj-stat">
+                      <div className="proj-stat-num">{s.num}</div>
+                      <div className="proj-stat-label">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+                <span className="proj-link">{t.proj2.link}</span>
+              </a>
+
+              <aside className="proj-featured-side" aria-hidden="true">
+                <div className="matia-badge">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z" />
+                    <path d="M7 6H4v1a3 3 0 0 0 3 3M17 6h3v1a3 3 0 0 1-3 3" />
+                  </svg>
+                  <div>
+                    <div className="matia-badge-title">{t.proj2.panel.award}</div>
+                    <div className="matia-badge-sub">{t.proj2.panel.grade}</div>
+                  </div>
+                </div>
+                <div className="matia-window">
+                  <div className="matia-window-head">
+                    <span className="matia-dot" />
+                    <span className="matia-dot" />
+                    <span className="matia-dot" />
+                    <span className="matia-window-label">{t.proj2.panel.window}</span>
+                  </div>
+                  <div className="matia-diag">
+                    <div className="matia-ring" />
+                    <div>
+                      <div className="matia-pct">{t.proj2.panel.donut}</div>
+                      <div className="matia-pct-label">{t.proj2.panel.donutLabel}</div>
+                    </div>
+                  </div>
+                  <div className="matia-bars">
+                    {[46, 62, 40, 78, 90, 54, 68].map((h, i) => (
+                      <span key={i} style={{ height: `${h}%` }} />
+                    ))}
+                  </div>
+                  <div className="matia-bars-label">{t.proj2.panel.barsLabel}</div>
+                </div>
+              </aside>
+            </article>
+
+            {/* Simulador PCM */}
             <a
               data-reveal
-              data-tilt
               href="https://github.com/bernardoparanhos/gerador_kpis.py"
               target="_blank"
               rel="noopener noreferrer"
-              className="proj-card"
+              className="proj-card proj-card-wide"
             >
               <div className="proj-head">
                 <h3 className="proj-name">{t.proj1.name}</h3>
@@ -282,32 +361,6 @@ export default function Home() {
               </div>
               <p className="proj-desc">{t.proj1.desc}</p>
               <span className="proj-link">github.com/bernardoparanhos/gerador_kpis.py →</span>
-            </a>
-            <a
-              data-reveal
-              data-tilt
-              href="https://mat-ia-plataform.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="proj-card"
-            >
-              <div className="proj-head">
-                <h3 className="proj-name">{t.proj2.name}</h3>
-                <span className="proj-status">
-                  <span className="status-dot" />
-                  {t.proj2.status}
-                </span>
-              </div>
-              <div className="proj-stack">
-                <span className="tag tag-neutral">React</span>
-                <span className="tag tag-neutral">Node.js</span>
-                <span className="tag tag-neutral">PostgreSQL</span>
-                <span className="tag tag-neutral">OpenAI</span>
-                <span className="tag tag-neutral">Tailwind</span>
-                <span className="tag tag-neutral">Vercel</span>
-              </div>
-              <p className="proj-desc">{t.proj2.desc}</p>
-              <span className="proj-link">mat-ia-plataform.vercel.app →</span>
             </a>
           </div>
         </section>
