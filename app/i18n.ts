@@ -61,9 +61,9 @@ const pt = {
   },
   exp1: {
     date: "Abr 2026 — Presente",
-    role: "Fundador & Desenvolvedor Full Stack — MAT-IA",
+    role: "Bolsista de Inovação · Coordenação de Projeto e Produto — MAT-IA",
     org: "UTFPR / InovaGrad",
-    desc: "Desenvolvo do zero uma plataforma web educacional com IA para diagnóstico e nivelamento em matemática de alunos ingressantes em Engenharia. Aprovado em 1º lugar no edital InovaGrad 2025 com nota 9,6 entre candidatos de toda a UTFPR. A plataforma conta com diagnóstico adaptativo de 20 questões, banco de 650+ exercícios em 10+ blocos temáticos, correção automática de resoluções manuscritas via GPT-4o Vision, gamificação com ranking em tempo real e relatórios para professores via Google Sheets.",
+    desc: "Concebi e conduzo o MAT-IA, projeto de inovação aprovado em 1º lugar no Edital InovaGrad 2025 (nota 9,6 entre candidatos de toda a UTFPR) — da definição do problema e do escopo à entrega. Atuo na coordenação do produto: levantamento de requisitos com os professores, priorização de roadmap, definição de indicadores de aprendizagem e acompanhamento de resultados. Um caso prático de engenharia de produção aplicada à educação — organizando processo, dados e tecnologia num produto real em produção (diagnóstico adaptativo, 650+ questões, correção por IA e relatórios para docentes).",
   },
   exp2: {
     date: "Jun 2026 — Presente",
@@ -87,7 +87,7 @@ const pt = {
     name: "MAT-IA",
     status: "Em produção",
     tagline: "Plataforma de Suporte Inteligente ao Aprendizado de Matemática",
-    desc: "Sistema educacional com IA para diagnóstico, nivelamento e reforço em matemática de ingressantes em Engenharia na UTFPR Medianeira. Como bolsista encarregado do projeto, conduzo o MAT-IA do escopo à execução — planejamento, coordenação com os professores e indicadores de acompanhamento — aplicando gestão de projetos e engenharia de produção a um produto real em produção.",
+    desc: "Sistema educacional com IA para diagnóstico, nivelamento e reforço em matemática de ingressantes em Engenharia na UTFPR Medianeira. Conduzo o MAT-IA como coordenador de produto — da concepção e escopo à entrega: requisitos com professores, roadmap e indicadores de aprendizagem — unindo gestão de projetos e engenharia de produção a um produto real em produção.",
     link: "plataformamati.dev →",
     stats: [
       { num: "+650", label: "questões" },
@@ -109,7 +109,13 @@ const pt = {
     sub: "Aberto a projetos, pesquisas colaborativas e novas conexões nas áreas de operações, IA aplicada e engenharia de processos.",
     emailLabel: "Email",
   },
-  footer: "Bernardo Paranhos — Engenharia de Produção · UTFPR Medianeira · 2026",
+  footer: {
+    builtBy: "Desenhado e desenvolvido por",
+    stack: "Next.js · TypeScript · Caprasimo & Figtree",
+    location: "Medianeira · PR",
+    repo: "Código aberto no GitHub",
+    updated: "© 2026 · atualizado em jul/2026",
+  },
 };
 
 const en: typeof pt = {
@@ -169,9 +175,9 @@ const en: typeof pt = {
   },
   exp1: {
     date: "Apr 2026 — Present",
-    role: "Founder & Full Stack Developer — MAT-IA",
+    role: "Innovation Fellow · Project & Product Coordination — MAT-IA",
     org: "UTFPR / InovaGrad",
-    desc: "I'm building from scratch an educational web platform with AI for math diagnosis and leveling of incoming Engineering students. Approved in 1st place in the InovaGrad 2025 call with a 9.6 score among candidates across all of UTFPR. The platform features a 20-question adaptive diagnosis, a bank of 650+ exercises in 10+ thematic blocks, automatic grading of handwritten solutions via GPT-4o Vision, gamification with a real-time ranking, and reports for teachers via Google Sheets.",
+    desc: "I conceived and lead MAT-IA, an innovation project approved in 1st place in the InovaGrad 2025 call (9.6 score among candidates across all of UTFPR) — from problem and scope definition to delivery. I handle product coordination: gathering requirements with professors, prioritizing the roadmap, defining learning indicators and tracking results. A practical case of production engineering applied to education — organizing process, data and technology into a real product in production (adaptive diagnosis, 650+ questions, AI grading and reports for teachers).",
   },
   exp2: {
     date: "Jun 2026 — Present",
@@ -195,7 +201,7 @@ const en: typeof pt = {
     name: "MAT-IA",
     status: "In production",
     tagline: "Intelligent Support Platform for Math Learning",
-    desc: "AI-powered educational system for math diagnosis, leveling and reinforcement for incoming Engineering students at UTFPR Medianeira. As the fellow in charge of the project, I lead MAT-IA from scope to execution — planning, coordination with professors and tracking indicators — applying project management and production engineering to a real product in production.",
+    desc: "AI-powered educational system for math diagnosis, leveling and reinforcement for incoming Engineering students at UTFPR Medianeira. I lead MAT-IA as product coordinator — from concept and scope to delivery: requirements with professors, roadmap and learning indicators — combining project management and production engineering into a real product in production.",
     link: "plataformamati.dev →",
     stats: [
       { num: "+650", label: "questions" },
@@ -217,7 +223,13 @@ const en: typeof pt = {
     sub: "Open to projects, collaborative research and new connections in operations, applied AI and process engineering.",
     emailLabel: "Email",
   },
-  footer: "Bernardo Paranhos — Production Engineering · UTFPR Medianeira · 2026",
+  footer: {
+    builtBy: "Designed and developed by",
+    stack: "Next.js · TypeScript · Caprasimo & Figtree",
+    location: "Medianeira · PR",
+    repo: "Open source on GitHub",
+    updated: "© 2026 · updated jul/2026",
+  },
 };
 
 export const translations: Record<Lang, typeof pt> = { pt, en };

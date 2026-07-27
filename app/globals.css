@@ -1019,19 +1019,60 @@ a:focus-visible,
 /* footer */
 .footer {
   border-top: 1px solid var(--n300);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 0 56px;
+}
+.footer-col {
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 24px 0 56px;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.footer-col-center {
+  align-items: center;
+  text-align: center;
+}
+.footer-col-end {
+  align-items: flex-end;
+  text-align: right;
+}
+.footer-credit {
+  font-size: 13.5px;
+  color: var(--n700);
+}
+.footer-credit strong {
+  font-weight: 700;
+  color: var(--text);
+}
+.footer-sub {
   font-family: var(--font-mono), monospace;
-  font-size: 11px;
+  font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--n500);
 }
 .footer-mark {
+  font-size: 20px;
   color: var(--accent);
+}
+.footer-repo {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: var(--accent-700);
+  transition: color 0.25s;
+}
+.footer-repo:hover {
+  color: var(--accent);
+}
+.footer-repo svg {
+  flex-shrink: 0;
 }
 
 /* ═══ Responsivo ═══ */
@@ -1216,7 +1257,14 @@ a:focus-visible,
     padding: 18px 12px;
   }
   .footer {
-    font-size: 10px;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    text-align: left;
+  }
+  .footer-col-center,
+  .footer-col-end {
+    align-items: flex-start;
+    text-align: left;
   }
 }
 
