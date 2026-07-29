@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Bernardo Paranhos — Engenharia de Produção, Inovação e IA | UTFPR Medianeira";
+export const alt = "Bernardo Paranhos · Engenharia de Produção, Inovação e IA | UTFPR Medianeira";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

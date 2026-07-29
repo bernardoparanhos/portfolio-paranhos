@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import Effects from "@/components/Effects";
 import Repertorio from "@/components/Repertorio";
@@ -319,12 +320,7 @@ export default function Home() {
           <div className="proj-list">
             {/* MAT-IA — projeto em destaque */}
             <article data-reveal className="proj-featured">
-              <a
-                href="https://landing.plataformamati.dev/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="proj-featured-main"
-              >
+              <div className="proj-featured-main">
                 <div className="proj-head">
                   <div>
                     <h3 className="proj-name">{t.proj2.name}</h3>
@@ -351,8 +347,20 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                <span className="proj-link">{t.proj2.link}</span>
-              </a>
+                <div className="matia-ctas">
+                  <Link href="/casos/mat-ia" className="matia-cta-primary">
+                    {t.proj2.caseCta}
+                  </Link>
+                  <a
+                    href="https://landing.plataformamati.dev/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="matia-cta-ghost"
+                  >
+                    {t.proj2.link}
+                  </a>
+                </div>
+              </div>
 
               <aside className="proj-featured-side" aria-hidden="true">
                 <div className="matia-badge">

@@ -9,7 +9,7 @@ const personSchema = {
   alternateName: "Engenheiro Paranhos",
   url: `${SITE_URL}/`,
   image: `${SITE_URL}/foto-perfil.jpeg`,
-  jobTitle: "Estudante de Engenharia de Produção — UTFPR Medianeira",
+  jobTitle: "Estudante de Engenharia de Produção · UTFPR Medianeira",
   description:
     "Estudante de Engenharia de Produção na UTFPR Medianeira, bolsista InovaGrad aprovado em 1º lugar com nota 9,6 e estagiário em consultoria de gestão. Desenvolve o MAT-IA, plataforma educacional com IA para diagnóstico e nivelamento matemático em cursos de Engenharia.",
   alumniOf: {
@@ -27,12 +27,12 @@ const personSchema = {
   worksFor: [
     {
       "@type": "Organization",
-      name: "AntiFrágil — Gestão & Consultoria",
+      name: "AntiFrágil · Gestão & Consultoria",
       description: "Consultoria de gestão e processos",
     },
     {
       "@type": "Organization",
-      name: "UTFPR — InovaGrad",
+      name: "UTFPR · InovaGrad",
       description: "Programa de inovação pedagógica da UTFPR",
     },
   ],
