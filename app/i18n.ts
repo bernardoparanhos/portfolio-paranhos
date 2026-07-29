@@ -54,6 +54,23 @@ const pt = {
     enLevel: "Básico · em aprendizado",
     badge: "Medianeira · PR",
   },
+  principles: {
+    label: "Princípios de trabalho",
+    items: [
+      {
+        title: "Dados acima de achismo",
+        desc: "Toda decisão precisa de um número atrás. Sem medir, é só opinião com sotaque técnico.",
+      },
+      {
+        title: "Feito hoje, melhor depois",
+        desc: "Entrego funcionando, escuto e corrijo. Perfeição na primeira versão costuma ser atraso disfarçado.",
+      },
+      {
+        title: "Se repete três vezes, viro script",
+        desc: "Trabalho repetitivo é desperdício. Automatizo e devolvo o tempo para o que exige decisão.",
+      },
+    ],
+  },
   education: {
     degree: "Bacharelado em Engenharia de Produção",
     school: "Universidade Tecnológica Federal do Paraná",
@@ -223,6 +240,23 @@ const en: typeof pt = {
     enName: "English",
     enLevel: "Basic · learning",
     badge: "Medianeira · PR",
+  },
+  principles: {
+    label: "Working principles",
+    items: [
+      {
+        title: "Data over guesswork",
+        desc: "Every decision needs a number behind it. Without measuring, it's just opinion with a technical accent.",
+      },
+      {
+        title: "Done today, better later",
+        desc: "I ship it working, then listen and fix. Perfection in the first version is usually delay in disguise.",
+      },
+      {
+        title: "Repeat it three times, I script it",
+        desc: "Repetitive work is waste. I automate it and give the time back to what needs a decision.",
+      },
+    ],
   },
   education: {
     degree: "Bachelor's in Production Engineering",

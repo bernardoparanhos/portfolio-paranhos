@@ -7,6 +7,36 @@ import Repertorio from "@/components/Repertorio";
 import portrait from "@/public/foto-perfil.jpeg";
 import { translations, type Lang } from "./i18n";
 
+// Ícones dos princípios (line icons estilo Lucide, tintados via currentColor).
+const iconProps = {
+  width: 22,
+  height: 22,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.9,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+};
+const PRINCIPLE_ICONS = [
+  <svg key="0" {...iconProps}>
+    <line x1="6" y1="20" x2="6" y2="14" />
+    <line x1="12" y1="20" x2="12" y2="4" />
+    <line x1="18" y1="20" x2="18" y2="10" />
+  </svg>,
+  <svg key="1" {...iconProps}>
+    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+    <path d="m9 11 3 3L22 4" />
+  </svg>,
+  <svg key="2" {...iconProps}>
+    <path d="m17 2 4 4-4 4" />
+    <path d="M3 11v-1a4 4 0 0 1 4-4h14" />
+    <path d="m7 22-4-4 4-4" />
+    <path d="M21 13v1a4 4 0 0 1-4 4H3" />
+  </svg>,
+];
+
 export default function Home() {
   const [lang, setLang] = useState<Lang>("pt");
 
@@ -182,6 +212,19 @@ export default function Home() {
                 <span className="lang-name">{t.about.enName}</span>
                 <span className="tag tag-outline">{t.about.enLevel}</span>
               </div>
+            </div>
+          </div>
+
+          <div data-reveal className="principles">
+            <div className="principles-label">{t.principles.label}</div>
+            <div className="principles-grid">
+              {t.principles.items.map((p, i) => (
+                <div key={i} className="principle">
+                  <span className="principle-icon">{PRINCIPLE_ICONS[i]}</span>
+                  <h3 className="principle-title">{p.title}</h3>
+                  <p className="principle-desc">{p.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

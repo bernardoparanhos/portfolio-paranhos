@@ -567,6 +567,56 @@ a:focus-visible,
   font-weight: 700;
 }
 
+/* princípios de trabalho (card sob o Sobre) */
+.principles {
+  margin-top: 64px;
+  padding: 44px 48px;
+  background: color-mix(in oklab, white 52%, var(--bg) 48%);
+  border: 1px solid var(--n200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+.principles-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--n500);
+  margin-bottom: 30px;
+}
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.principle-icon {
+  display: block;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.principle-title {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.principle-desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--n700);
+}
+@media (max-width: 760px) {
+  .principles {
+    margin-top: 44px;
+    padding: 34px 28px;
+  }
+  .principles-grid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
 /* formação */
 .edu-card {
   position: relative;
