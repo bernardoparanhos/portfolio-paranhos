@@ -10,6 +10,7 @@ const pt = {
     about: "Sobre",
     education: "Formação",
     experience: "Experiência",
+    repertoire: "Repertório",
     projects: "Projetos",
     contact: "Contato",
     langLabel: "Idioma",
@@ -38,6 +39,7 @@ const pt = {
     about: "Sobre",
     education: "Formação",
     experience: "Experiência",
+    repertoire: "Repertório",
     projects: "Projetos",
     contact: "Contato",
   },
@@ -103,6 +105,60 @@ const pt = {
       barsLabel: "desempenho por bloco temático",
     },
   },
+  repertoire: {
+    intro:
+      "A base é engenharia — processo, método e número. A tecnologia entra como alavanca: quando a planilha não dá conta, eu escrevo a ferramenta.",
+    filters: { all: "Tudo", eng: "Engenharia & gestão", tec: "Dados & tecnologia" },
+    inProgressLabel: "Em curso",
+    inProgress: ["Inglês técnico", "Lean Seis Sigma Yellow Belt"],
+    columns: [
+      {
+        kicker: ["Engenharia de", "Produção"],
+        items: [
+          "Mapeamento de processos",
+          "KPIs de manutenção · MTBF, MTTR, OEE",
+          "Análise de indicadores",
+          "Melhoria contínua",
+        ],
+      },
+      {
+        kicker: ["Gestão &", "Organização"],
+        items: [
+          "Planos de ação",
+          "Relatórios gerenciais",
+          "Gestão de carteira · 26 clientes",
+          "Condução de reuniões & follow-up",
+          "Excel avançado",
+          "Power BI · dashboards",
+          "Documentação de rotinas",
+        ],
+      },
+      {
+        kicker: ["Dados &", "Análise"],
+        items: [
+          "Python",
+          "Pandas",
+          "NumPy",
+          "PostgreSQL · SQL",
+          "API OpenAI · IA aplicada",
+          "Análise exploratória",
+        ],
+      },
+      {
+        kicker: ["Desenvolvimento", "& Ferramentas"],
+        items: [
+          "TypeScript",
+          "React · Vite",
+          "Node · Express",
+          "Next.js · Astro",
+          "Tailwind CSS",
+          "Git · GitHub",
+          "Vercel · deploy contínuo",
+          "WebStorm · VS Code · Cursor",
+        ],
+      },
+    ],
+  },
   contact: {
     titleLead: "Vamos ",
     titleAccent: "conversar.",
@@ -124,6 +180,7 @@ const en: typeof pt = {
     about: "About",
     education: "Education",
     experience: "Experience",
+    repertoire: "Repertoire",
     projects: "Projects",
     contact: "Contact",
     langLabel: "Language",
@@ -152,6 +209,7 @@ const en: typeof pt = {
     about: "About",
     education: "Education",
     experience: "Experience",
+    repertoire: "Repertoire",
     projects: "Projects",
     contact: "Contact",
   },
@@ -217,6 +275,60 @@ const en: typeof pt = {
       barsLabel: "performance by thematic block",
     },
   },
+  repertoire: {
+    intro:
+      "The foundation is engineering — process, method and numbers. Technology comes in as leverage: when the spreadsheet isn't enough, I write the tool.",
+    filters: { all: "All", eng: "Engineering & management", tec: "Data & technology" },
+    inProgressLabel: "In progress",
+    inProgress: ["Technical English", "Lean Six Sigma Yellow Belt"],
+    columns: [
+      {
+        kicker: ["Production", "Engineering"],
+        items: [
+          "Process mapping",
+          "Maintenance KPIs · MTBF, MTTR, OEE",
+          "Indicator analysis",
+          "Continuous improvement",
+        ],
+      },
+      {
+        kicker: ["Management &", "Organization"],
+        items: [
+          "Action plans",
+          "Management reports",
+          "Portfolio management · 26 clients",
+          "Meetings & follow-up",
+          "Advanced Excel",
+          "Power BI · dashboards",
+          "Process documentation",
+        ],
+      },
+      {
+        kicker: ["Data &", "Analysis"],
+        items: [
+          "Python",
+          "Pandas",
+          "NumPy",
+          "PostgreSQL · SQL",
+          "OpenAI API · applied AI",
+          "Exploratory analysis",
+        ],
+      },
+      {
+        kicker: ["Development", "& Tools"],
+        items: [
+          "TypeScript",
+          "React · Vite",
+          "Node · Express",
+          "Next.js · Astro",
+          "Tailwind CSS",
+          "Git · GitHub",
+          "Vercel · continuous deploy",
+          "WebStorm · VS Code · Cursor",
+        ],
+      },
+    ],
+  },
   contact: {
     titleLead: "Let's ",
     titleAccent: "talk.",
@@ -233,3 +345,5 @@ const en: typeof pt = {
 };
 
 export const translations: Record<Lang, typeof pt> = { pt, en };
+
+export type Dict = typeof pt;

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Effects from "@/components/Effects";
+import Repertorio from "@/components/Repertorio";
 import portrait from "@/public/foto-perfil.jpeg";
 import { translations, type Lang } from "./i18n";
 
@@ -46,6 +47,9 @@ export default function Home() {
             </a>
             <a href="#experiencia" data-spy="experiencia" className="nav-link">
               {t.nav.experience}
+            </a>
+            <a href="#repertorio" data-spy="repertorio" className="nav-link">
+              {t.nav.repertoire}
             </a>
             <a href="#projetos" data-spy="projetos" className="nav-link">
               {t.nav.projects}
@@ -252,10 +256,21 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 04 PROJETOS */}
-        <section id="projetos" className="container section-mid">
+        {/* 04 REPERTÓRIO */}
+        <section id="repertorio" className="container section-mid">
           <div data-reveal className="sec-head">
             <span className="sec-num">04</span>
+            <span className="sec-label">{t.sections.repertoire}</span>
+          </div>
+          <div data-reveal>
+            <Repertorio t={t.repertoire} />
+          </div>
+        </section>
+
+        {/* 05 PROJETOS */}
+        <section id="projetos" className="container section-mid">
+          <div data-reveal className="sec-head">
+            <span className="sec-num">05</span>
             <span className="sec-label">{t.sections.projects}</span>
           </div>
           <div className="proj-list">
@@ -365,10 +380,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 05 CONTATO */}
+        {/* 06 CONTATO */}
         <section id="contato" className="container" style={{ paddingTop: 40 }}>
           <div data-reveal className="sec-head">
-            <span className="sec-num">05</span>
+            <span className="sec-num">06</span>
             <span className="sec-label">{t.sections.contact}</span>
           </div>
           <div className="contact-grid">
