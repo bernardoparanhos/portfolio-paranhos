@@ -26,3 +26,7 @@ yarn-error.log*
 # os / editor
 .DS_Store
 Thumbs.db
+
+# contexto local — documentação interna, NÃO sobe pro github
+/contexto.local/
+*.local.md
