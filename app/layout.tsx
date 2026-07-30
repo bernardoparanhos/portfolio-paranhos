@@ -71,16 +71,23 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f5ead8",
-  colorScheme: "light",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5ead8" },
+    { media: "(prefers-color-scheme: dark)", color: "#201911" },
+  ],
+  colorScheme: "light dark",
   width: "device-width",
   initialScale: 1,
 };
 
+// Define o tema antes do primeiro paint (evita flash cream ao recarregar no dark).
+const themeScript = `(function(){try{var t=localStorage.getItem('bp-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}})()`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body className={`${heading.variable} ${body.variable} ${mono.variable}`}>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <StructuredData />
         {children}
       </body>

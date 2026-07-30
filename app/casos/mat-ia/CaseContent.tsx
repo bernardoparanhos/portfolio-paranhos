@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 import { CASE, type CaseLang } from "./content";
 
 // negrito via **...**
@@ -39,6 +40,16 @@ export default function CaseContent() {
   useEffect(() => {
     document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
   }, [lang]);
+
+  // Troca e persiste na MESMA chave da principal, pra sincronizar ao voltar.
+  const changeLang = (next: CaseLang) => {
+    setLang(next);
+    try {
+      localStorage.setItem("lang", next);
+    } catch {
+      /* Safari private mode */
+    }
+  };
 
   // scroll reveal (respeita prefers-reduced-motion)
   useEffect(() => {
@@ -97,7 +108,32 @@ export default function CaseContent() {
             </svg>
             {c.back}
           </Link>
-          <span className="case-bar-tag">{c.barTag}</span>
+          <div className="case-bar-right">
+            <ThemeToggle iconSize={14} />
+            <div
+              className="nav-lang"
+              role="group"
+              aria-label={lang === "en" ? "Language" : "Idioma"}
+            >
+              <button
+                type="button"
+                className={`lang-btn${lang === "pt" ? " active" : ""}`}
+                aria-pressed={lang === "pt"}
+                onClick={() => changeLang("pt")}
+              >
+                PT
+              </button>
+              <button
+                type="button"
+                className={`lang-btn${lang === "en" ? " active" : ""}`}
+                aria-pressed={lang === "en"}
+                onClick={() => changeLang("en")}
+              >
+                EN
+              </button>
+            </div>
+            <span className="case-bar-tag">{c.barTag}</span>
+          </div>
         </div>
       </div>
 

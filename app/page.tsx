@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Effects from "@/components/Effects";
 import Repertorio from "@/components/Repertorio";
+import ThemeToggle from "@/components/ThemeToggle";
 import portrait from "@/public/foto-perfil.jpeg";
 import { translations, type Lang } from "./i18n";
 
@@ -89,23 +90,26 @@ export default function Home() {
               {t.nav.contact}
             </a>
           </div>
-          <div className="nav-lang" role="group" aria-label={t.nav.langLabel}>
-            <button
-              type="button"
-              className={`lang-btn${lang === "pt" ? " active" : ""}`}
-              aria-pressed={lang === "pt"}
-              onClick={() => setLang("pt")}
-            >
-              PT
-            </button>
-            <button
-              type="button"
-              className={`lang-btn${lang === "en" ? " active" : ""}`}
-              aria-pressed={lang === "en"}
-              onClick={() => setLang("en")}
-            >
-              EN
-            </button>
+          <div className="nav-controls">
+            <ThemeToggle />
+            <div className="nav-lang" role="group" aria-label={t.nav.langLabel}>
+              <button
+                type="button"
+                className={`lang-btn${lang === "pt" ? " active" : ""}`}
+                aria-pressed={lang === "pt"}
+                onClick={() => setLang("pt")}
+              >
+                PT
+              </button>
+              <button
+                type="button"
+                className={`lang-btn${lang === "en" ? " active" : ""}`}
+                aria-pressed={lang === "en"}
+                onClick={() => setLang("en")}
+              >
+                EN
+              </button>
+            </div>
           </div>
           <button
             id="navToggle"

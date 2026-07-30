@@ -19,10 +19,55 @@
   --shadow-md: 0 10px 30px -12px rgba(80, 50, 20, 0.25);
   --shadow-lg: 0 24px 60px -24px rgba(80, 50, 20, 0.35);
   --radius-lg: 28px;
+
+  /* superfícies tokenizadas (trocam de valor no dark) */
+  --surface: #fbf5eb;
+  --surface-soft: #f8f1e4;
+  --surface-dim: #f6eee0;
+  --surface-strong: #fcf8f0;
+  --surface-nav: #f9f1e3;
+  --ring-blend: multiply;
+  --aurora-opacity: 0.33;
+}
+
+/* ═══ Dark mode quente (espresso, não preto) ═══ */
+:root[data-theme="dark"] {
+  --bg: #201911;
+  --text: #f2e7d6;
+  --n100: #2a2118;
+  --n200: #3a2f23;
+  --n300: #4a3d2e;
+  --n500: #a3927b;
+  --n600: #bfae95;
+  --n700: #d8ccb8;
+  --accent: #d98c52;
+  --accent-100: #38281a;
+  --accent-200: #63472a;
+  --accent-600: #e59c66;
+  --accent-700: #f0b98d;
+  --accent2: #94a877;
+  --accent2-200: #313a27;
+  --accent2-700: #b3c399;
+  --surface: #2a2118;
+  --surface-soft: #261e16;
+  --surface-dim: #241d15;
+  --surface-strong: #2f251b;
+  --surface-nav: #271f17;
+  --shadow-md: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+  --ring-blend: screen;
+  --aurora-opacity: 0.26;
 }
 
 * {
   box-sizing: border-box;
+}
+/* dimmer suave ao trocar de tema (elementos com transição própria mantêm a sua) */
+*:not([style*="transition"]) {
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease;
 }
 html {
   scroll-behavior: smooth;
@@ -105,7 +150,7 @@ a:focus-visible,
     transparent 72%
   );
   filter: blur(90px) hue-rotate(var(--ah, 0deg));
-  opacity: 0.33;
+  opacity: var(--aurora-opacity, 0.33);
   will-change: transform;
 }
 #cur-ring {
@@ -125,7 +170,7 @@ a:focus-visible,
     width 0.2s,
     height 0.2s,
     margin 0.2s;
-  mix-blend-mode: multiply;
+  mix-blend-mode: var(--ring-blend, multiply);
 }
 #cur-dot {
   position: fixed;
@@ -235,7 +280,7 @@ a:focus-visible,
   align-items: center;
   gap: 18px;
   margin-top: 18px;
-  background: color-mix(in oklab, var(--bg) 72%, white 28%);
+  background: var(--surface-nav);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   border: 1px solid var(--n200);
@@ -302,6 +347,63 @@ a:focus-visible,
   background: var(--bg);
   color: var(--text);
 }
+/* grupo de controles (tema + idioma) à direita da nav */
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+/* switch de tema (sol/lua deslizante) */
+.theme-toggle {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  width: 62px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid var(--n300);
+  border-radius: 999px;
+  background: var(--surface-dim);
+  cursor: pointer;
+}
+.theme-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 3px 10px -3px rgba(120, 70, 25, 0.55);
+  transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.theme-sun,
+.theme-moon {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+.theme-sun {
+  color: #fff;
+}
+.theme-moon {
+  color: var(--n500);
+}
+:root[data-theme="dark"] .theme-thumb {
+  transform: translateX(30px);
+}
+:root[data-theme="dark"] .theme-sun {
+  color: var(--n500);
+}
+:root[data-theme="dark"] .theme-moon {
+  color: #2a2118;
+}
 /* botão hambúrguer — escondido no desktop, aparece no mobile */
 .nav-toggle {
   display: none;
@@ -314,7 +416,7 @@ a:focus-visible,
   padding: 0;
   border: 1px solid var(--n200);
   border-radius: 999px;
-  background: color-mix(in oklab, var(--bg) 60%, white 40%);
+  background: var(--surface-dim);
   cursor: pointer;
   transition:
     background 0.25s,
@@ -384,7 +486,7 @@ a:focus-visible,
 .metric {
   flex: 1;
   padding: 22px 24px;
-  background: color-mix(in oklab, white 55%, var(--bg) 45%);
+  background: var(--surface);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
 }
@@ -504,6 +606,9 @@ a:focus-visible,
 .washed {
   filter: saturate(0.72) contrast(0.9) brightness(1.05);
 }
+:root[data-theme="dark"] .washed {
+  filter: saturate(0.8) contrast(0.92) brightness(0.9);
+}
 .portrait {
   position: relative;
   z-index: 1;
@@ -571,7 +676,7 @@ a:focus-visible,
 .principles {
   margin-top: 64px;
   padding: 44px 48px;
-  background: color-mix(in oklab, white 52%, var(--bg) 48%);
+  background: var(--surface);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
@@ -621,7 +726,7 @@ a:focus-visible,
 .edu-card {
   position: relative;
   overflow: hidden;
-  background: color-mix(in oklab, white 50%, var(--bg) 50%);
+  background: var(--surface);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
   padding: 44px 48px;
@@ -689,7 +794,7 @@ a:focus-visible,
     border-color 0.3s;
 }
 .exp-row:hover {
-  background: color-mix(in oklab, white 45%, var(--bg) 55%);
+  background: var(--surface-soft);
   border-color: var(--n200);
 }
 .exp-date {
@@ -746,7 +851,7 @@ a:focus-visible,
   /* min-width:0 deixa o card encolher no grid; sem isso a URL longa do rodapé
      não quebra e estoura pela lateral direita. */
   min-width: 0;
-  background: color-mix(in oklab, white 55%, var(--bg) 45%);
+  background: var(--surface);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
   padding: 38px 40px;
@@ -820,7 +925,7 @@ a:focus-visible,
 .proj-featured {
   display: grid;
   grid-template-columns: 1.35fr 1fr;
-  background: color-mix(in oklab, white 55%, var(--bg) 45%);
+  background: var(--surface);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -929,7 +1034,7 @@ a:focus-visible,
   gap: 16px;
   min-width: 0;
   padding: 30px;
-  background: color-mix(in oklab, var(--bg) 58%, white 42%);
+  background: var(--surface-soft);
   border-left: 1px solid var(--n200);
 }
 .matia-badge {
@@ -937,7 +1042,7 @@ a:focus-visible,
   align-items: center;
   gap: 12px;
   padding: 13px 16px;
-  background: color-mix(in oklab, white 62%, var(--bg) 38%);
+  background: var(--surface-strong);
   border: 1px solid var(--n200);
   border-radius: 16px;
 }
@@ -959,7 +1064,7 @@ a:focus-visible,
 }
 .matia-window {
   padding: 16px 18px 18px;
-  background: color-mix(in oklab, white 66%, var(--bg) 34%);
+  background: var(--surface-strong);
   border: 1px solid var(--n200);
   border-radius: 18px;
 }
@@ -1327,7 +1432,7 @@ a:focus-visible,
     gap: 12px;
     padding: 10px 12px 10px 22px;
   }
-  .nav-lang {
+  .nav-controls {
     margin-left: auto;
   }
   .nav-toggle {
@@ -1343,7 +1448,7 @@ a:focus-visible,
     left: 0;
     right: 0;
     padding: 12px;
-    background: color-mix(in oklab, var(--bg) 72%, white 28%);
+    background: var(--surface-nav);
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     border: 1px solid var(--n200);
@@ -1524,7 +1629,7 @@ a:focus-visible,
   position: sticky;
   top: 0;
   z-index: 40;
-  background: color-mix(in oklab, var(--bg) 82%, white 18%);
+  background: var(--surface-nav);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--n200);
@@ -1550,6 +1655,16 @@ a:focus-visible,
 }
 .case-back:hover {
   color: var(--accent-700);
+}
+.case-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 620px) {
+  .case-bar-tag {
+    display: none;
+  }
 }
 .case-bar-tag {
   font-family: var(--font-mono), monospace;
@@ -1665,7 +1780,7 @@ a:focus-visible,
 /* A lente */
 .case-lente {
   padding: 34px 40px 38px;
-  background: color-mix(in oklab, white 48%, var(--bg) 52%);
+  background: var(--surface-soft);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
 }
@@ -1756,7 +1871,7 @@ a:focus-visible,
 }
 .case-stat {
   padding: 24px 26px;
-  background: color-mix(in oklab, white 52%, var(--bg) 48%);
+  background: var(--surface);
   border: 1px solid var(--n200);
   border-radius: 20px;
 }
@@ -1788,7 +1903,7 @@ a:focus-visible,
 /* fluxo */
 .case-flow {
   padding: 32px 36px 36px;
-  background: color-mix(in oklab, white 62%, var(--bg) 38%);
+  background: var(--surface-strong);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
 }
@@ -1909,7 +2024,7 @@ a:focus-visible,
   display: flex;
   flex-direction: column;
   padding: 28px 30px;
-  background: color-mix(in oklab, white 40%, var(--bg) 60%);
+  background: var(--surface-dim);
   border: 1px dashed var(--n300);
   border-radius: 22px;
 }
@@ -1933,7 +2048,7 @@ a:focus-visible,
 }
 .case-after {
   padding: 28px 30px;
-  background: color-mix(in oklab, white 58%, var(--bg) 42%);
+  background: var(--surface);
   border: 1px solid var(--accent-200);
   border-radius: 22px;
 }
@@ -1981,7 +2096,7 @@ a:focus-visible,
 .case-prec {
   margin: 28px 0 24px;
   padding: 30px 34px 34px;
-  background: color-mix(in oklab, white 55%, var(--bg) 45%);
+  background: var(--surface);
   border: 1px solid var(--n200);
   border-radius: var(--radius-lg);
 }
@@ -2025,7 +2140,7 @@ a:focus-visible,
   gap: 32px;
   align-items: center;
   padding: 28px 34px;
-  background: color-mix(in oklab, white 50%, var(--bg) 50%);
+  background: var(--surface);
   border: 1px solid var(--n200);
   border-radius: 22px;
 }
@@ -2092,7 +2207,7 @@ a:focus-visible,
 /* honestidade */
 .case-honesty {
   padding: 36px 40px 40px;
-  background: color-mix(in oklab, white 44%, var(--bg) 56%);
+  background: var(--surface-soft);
   border: 1px solid var(--n300);
   border-radius: var(--radius-lg);
 }
