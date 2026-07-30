@@ -1498,6 +1498,16 @@ a:focus-visible,
     gap: 22px;
     margin-bottom: 32px;
   }
+  /* filtros em 2 colunas: 2 pills em cima, 1 embaixo (nunca vaza) */
+  .rep-filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+  }
+  .rep-pill {
+    text-align: center;
+  }
   /* card em destaque empilha: painel visual vai pra baixo */
   .proj-featured {
     grid-template-columns: 1fr;
