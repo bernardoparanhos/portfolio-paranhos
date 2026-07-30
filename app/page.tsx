@@ -6,6 +6,7 @@ import Image from "next/image";
 import Effects from "@/components/Effects";
 import Repertorio from "@/components/Repertorio";
 import ThemeToggle from "@/components/ThemeToggle";
+import CvButton from "@/components/CvButton";
 import portrait from "@/public/foto-perfil.jpeg";
 import { translations, type Lang } from "./i18n";
 
@@ -89,6 +90,25 @@ export default function Home() {
             <a href="#contato" data-spy="contato" className="nav-link">
               {t.nav.contact}
             </a>
+            {/* idioma dentro do menu no mobile (some do pill pra não estourar) */}
+            <div className="nav-lang nav-lang-drawer" role="group" aria-label={t.nav.langLabel}>
+              <button
+                type="button"
+                className={`lang-btn${lang === "pt" ? " active" : ""}`}
+                aria-pressed={lang === "pt"}
+                onClick={() => setLang("pt")}
+              >
+                PT
+              </button>
+              <button
+                type="button"
+                className={`lang-btn${lang === "en" ? " active" : ""}`}
+                aria-pressed={lang === "en"}
+                onClick={() => setLang("en")}
+              >
+                EN
+              </button>
+            </div>
           </div>
           <div className="nav-controls">
             <ThemeToggle />
@@ -110,6 +130,7 @@ export default function Home() {
                 EN
               </button>
             </div>
+            <CvButton label={t.cv.label} title={t.cv.title} download={t.cv.download} />
           </div>
           <button
             id="navToggle"

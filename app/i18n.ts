@@ -190,6 +190,11 @@ const pt = {
     repo: "Código aberto no GitHub",
     updated: "© 2026 · atualizado em jul/2026",
   },
+  cv: {
+    label: "CV",
+    title: "Currículo",
+    download: "Baixar PDF",
+  },
 };
 
 const en: typeof pt = {
@@ -377,6 +382,11 @@ const en: typeof pt = {
     location: "Medianeira · PR",
     repo: "Open source on GitHub",
     updated: "© 2026 · updated jul/2026",
+  },
+  cv: {
+    label: "CV",
+    title: "Résumé",
+    download: "Download PDF",
   },
 };
 
