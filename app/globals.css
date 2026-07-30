@@ -1291,6 +1291,173 @@ a:focus-visible,
   margin-top: 10px;
 }
 
+/* ═══ Card "Painel de aderência a plano de ação" ═══ */
+.pa-card {
+  grid-template-columns: 1.02fr 0.98fr;
+}
+.pa-card .proj-desc {
+  flex-grow: 0;
+}
+.pa-kicker {
+  margin-top: 8px;
+  max-width: 34em;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  line-height: 1.55;
+  letter-spacing: 0.04em;
+  color: var(--n500);
+}
+.pa-metrics {
+  display: flex;
+  margin: 10px 0 24px;
+}
+.pa-metric {
+  padding-right: 24px;
+}
+.pa-metric + .pa-metric {
+  padding-left: 24px;
+  border-left: 1px solid var(--n200);
+}
+.pa-metric-num {
+  font-family: var(--font-heading), serif;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--text);
+}
+.pa-metric-label {
+  margin-top: 7px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.pa-btn {
+  align-self: flex-start;
+}
+.pa-note {
+  margin-top: 18px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--n500);
+}
+.pa-note strong {
+  color: var(--n700);
+  font-weight: 700;
+}
+/* coluna direita: os dois painéis */
+.pa-side {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 32px 30px;
+  border-left: 1px solid var(--n200);
+}
+.pa-panel {
+  padding: 14px 14px 16px;
+  background: var(--surface-soft);
+  border: 1px solid var(--n200);
+  border-radius: 16px;
+}
+.pa-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--n500);
+}
+.pa-dots {
+  display: inline-flex;
+  gap: 4px;
+}
+.pa-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.pa-dots span:nth-child(1) {
+  background: var(--accent);
+}
+.pa-dots span:nth-child(2) {
+  background: var(--n300);
+}
+.pa-dots span:nth-child(3) {
+  background: var(--accent2-200);
+}
+.pa-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--n200);
+  border-radius: 8px;
+}
+:root[data-theme="dark"] .pa-shot {
+  filter: brightness(0.92) saturate(0.95);
+}
+/* tabela de aging (texto nativo, não imagem) */
+.pa-aging-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  color: var(--n500);
+}
+.pa-aging-head-r {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.pa-aging-row {
+  display: grid;
+  grid-template-columns: 78px 28px 1fr;
+  gap: 10px;
+  align-items: start;
+  padding: 9px 0;
+  border-top: 1px solid var(--n200);
+}
+.pa-aging-faixa {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  color: var(--n600);
+}
+.pa-aging-n {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: right;
+  color: var(--n700);
+}
+.pa-aging-decision {
+  display: flex;
+  gap: 8px;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--n700);
+  overflow-wrap: anywhere;
+}
+.pa-aging-mark {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  transform: translateY(4px);
+}
+.pa-aging-row.emph .pa-aging-faixa,
+.pa-aging-row.emph .pa-aging-n {
+  color: var(--accent-700);
+}
+.pa-aging-row.emph .pa-aging-decision {
+  color: var(--text);
+  font-weight: 500;
+}
+
 /* ═══ 04 · Repertório ═══ */
 .rep-top {
   display: flex;
@@ -1662,7 +1829,8 @@ a:focus-visible,
   .proj-featured {
     grid-template-columns: 1fr;
   }
-  .proj-featured-side {
+  .proj-featured-side,
+  .pa-side {
     border-left: none;
     border-top: 1px solid var(--n200);
   }
@@ -1696,6 +1864,34 @@ a:focus-visible,
 @media (max-width: 560px) {
   .container {
     padding: 0 24px;
+  }
+  /* card Painel: métricas 2 em cima + 1 embaixo; aging mais justo; menos padding */
+  .pa-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 0;
+  }
+  .pa-metric,
+  .pa-metric + .pa-metric {
+    padding: 0;
+    border-left: none;
+  }
+  .pa-metric:nth-child(odd) {
+    padding-right: 18px;
+    border-right: 1px solid var(--n200);
+  }
+  .pa-metric:nth-child(even) {
+    padding-left: 18px;
+  }
+  .pa-metric:last-child {
+    border-right: none;
+  }
+  .pa-side {
+    padding: 24px;
+  }
+  .pa-aging-row {
+    grid-template-columns: 70px 24px minmax(0, 1fr);
+    gap: 6px;
   }
   .rep-pill {
     padding: 8px 12px;

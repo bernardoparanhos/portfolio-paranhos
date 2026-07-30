@@ -40,6 +40,14 @@ const PRINCIPLE_ICONS = [
   </svg>,
 ];
 
+// Cores das marcas da tabela de aging (por faixa). A "+30 dias" é a única enfatizada.
+const AGING_META: { mark: string; emph?: boolean }[] = [
+  { mark: "var(--accent2)" },
+  { mark: "var(--accent2)" },
+  { mark: "#c9a227" },
+  { mark: "var(--accent)", emph: true },
+];
+
 export default function Home() {
   const [lang, setLang] = useState<Lang>("pt");
 
@@ -429,30 +437,91 @@ export default function Home() {
               </aside>
             </article>
 
-            {/* Simulador PCM */}
-            <a
-              data-reveal
-              href="https://github.com/bernardoparanhos/gerador_kpis.py"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="proj-card proj-card-wide"
-            >
-              <div className="proj-head">
-                <h3 className="proj-name">{t.proj1.name}</h3>
-                <span className="proj-status">
-                  <span className="status-dot sage" />
-                  {t.proj1.status}
-                </span>
+            {/* Painel de aderência a plano de ação */}
+            <article data-reveal data-tilt className="proj-featured pa-card">
+              <div className="proj-featured-main">
+                <div className="proj-head">
+                  <div>
+                    <h3 className="proj-name">{t.painel.name}</h3>
+                    <div className="pa-kicker">{t.painel.kicker}</div>
+                  </div>
+                  <span className="proj-status">
+                    <span className="status-dot sage" />
+                    {t.painel.status}
+                  </span>
+                </div>
+                <div className="proj-stack">
+                  <span className="tag tag-neutral">Python</span>
+                  <span className="tag tag-neutral">Pandas</span>
+                  <span className="tag tag-neutral">NumPy</span>
+                  <span className="tag tag-neutral">openpyxl</span>
+                  <span className="tag tag-neutral">matplotlib</span>
+                </div>
+                <p className="proj-desc">{t.painel.desc}</p>
+                <div className="pa-metrics">
+                  {t.painel.metrics.map((m, i) => (
+                    <div key={i} className="pa-metric">
+                      <div className="pa-metric-num">{m.num}</div>
+                      <div className="pa-metric-label">{m.label}</div>
+                    </div>
+                  ))}
+                </div>
+                <a
+                  href="https://github.com/bernardoparanhos/painel-aderencia-plano-acao"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary pa-btn"
+                >
+                  {t.painel.cta}
+                </a>
+                <p className="pa-note">
+                  <strong>{t.painel.noteStrong}</strong>
+                  {t.painel.noteRest}
+                </p>
               </div>
-              <div className="proj-stack">
-                <span className="tag tag-neutral">Python</span>
-                <span className="tag tag-neutral">Pandas</span>
-                <span className="tag tag-neutral">NumPy</span>
-                <span className="tag tag-neutral">openpyxl</span>
-              </div>
-              <p className="proj-desc">{t.proj1.desc}</p>
-              <span className="proj-link">github.com/bernardoparanhos/gerador_kpis.py →</span>
-            </a>
+
+              <aside className="pa-side">
+                <div className="pa-panel">
+                  <div className="pa-panel-head">
+                    <span className="pa-dots">
+                      <span />
+                      <span />
+                      <span />
+                    </span>
+                    {t.painel.resumoLabel}
+                  </div>
+                  <Image
+                    src="/pa-resumo-640.png"
+                    alt={t.painel.resumoAlt}
+                    width={640}
+                    height={229}
+                    sizes="(max-width: 960px) 100vw, 430px"
+                    className="pa-shot"
+                  />
+                </div>
+                <div className="pa-panel">
+                  <div className="pa-aging-head">
+                    <span>{t.painel.agingLabel}</span>
+                    <span className="pa-aging-head-r">{t.painel.agingRight}</span>
+                  </div>
+                  <div className="pa-aging">
+                    {t.painel.aging.map((r, i) => (
+                      <div key={i} className={`pa-aging-row${AGING_META[i].emph ? " emph" : ""}`}>
+                        <span className="pa-aging-faixa">{r.faixa}</span>
+                        <span className="pa-aging-n">{r.n}</span>
+                        <span className="pa-aging-decision">
+                          <span
+                            className="pa-aging-mark"
+                            style={{ background: AGING_META[i].mark }}
+                          />
+                          {r.decision}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </aside>
+            </article>
           </div>
         </section>
 
