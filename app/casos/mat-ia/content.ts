@@ -60,10 +60,10 @@ const pt: CaseData = {
   },
   lead: "O MAT-IA descobre onde um aluno de Engenharia está travado em matemática e devolve um plano de estudo. Por dentro, ele é um processo: entra matéria-prima, passa por operações, tem pontos de inspeção, tem limite de retrabalho e tem custo por peça. É por essa lente que eu escrevo aqui.",
   meta: [
-    { label: "Meu papel", value: "Fundador e dev" },
+    { label: "Meu papel", value: "Coordenação de produto e desenvolvimento" },
     { label: "Contexto", value: "InovaGrad · UTFPR" },
     { label: "Situação", value: "Em produção" },
-    { label: "Commits", value: "291" },
+    { label: "Desde", value: "abr / 2026" },
   ],
   lenteKicker: "A lente",
   lenteP:
@@ -242,10 +242,10 @@ const en: CaseData = {
   },
   lead: "MAT-IA finds where an Engineering student is stuck in math and returns a study plan. Under the hood, it's a process: raw material comes in, goes through operations, has inspection points, has a rework limit and has a cost per part. That's the lens I write through here.",
   meta: [
-    { label: "My role", value: "Founder and dev" },
+    { label: "My role", value: "Product coordination and development" },
     { label: "Context", value: "InovaGrad · UTFPR" },
     { label: "Status", value: "In production" },
-    { label: "Commits", value: "291" },
+    { label: "Since", value: "Apr / 2026" },
   ],
   lenteKicker: "The lens",
   lenteP:
