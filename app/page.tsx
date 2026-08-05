@@ -201,7 +201,7 @@ export default function Home() {
               </div>
               <div data-tilt className="metric">
                 <div className="metric-num-row">
-                  <span className="metric-num">2</span>
+                  <span className="metric-num">3</span>
                   <span className="metric-deg" style={{ width: 11, height: 11 }} />
                 </div>
                 <div className="metric-label">{t.metrics.m3Label}</div>

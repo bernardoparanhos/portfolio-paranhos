@@ -34,7 +34,7 @@ const pt = {
     m3Sub: "UTFPR · 2026",
   },
   marquee:
-    "Engenharia de Produção  ✺  Dados  ✺  IA aplicada  ✺  Processos  ✺  KPIs de manutenção  ✺  Full Stack  ✺  Gestão  ✺  ",
+    "Engenharia de Produção  ✺  Gestão  ✺  Processos  ✺  Projetos  ✺  Indicadores  ✺  Dados  ✺  IA aplicada  ✺  ",
   sections: {
     about: "Sobre",
     education: "Formação",
@@ -75,14 +75,14 @@ const pt = {
     degree: "Bacharelado em Engenharia de Produção",
     school: "Universidade Tecnológica Federal do Paraná",
     meta: "Campus Medianeira · PR  /  2025 a 2030 (previsto)",
-    tag: "2º período · em andamento",
+    tag: "3º período · em andamento",
     btn: "Ver grade curricular",
   },
   exp1: {
-    date: "Desde Abr 2026",
+    date: "Mar – Dez 2026",
     role: "Bolsista de Inovação · Coordenação de Projeto e Produto · MAT-IA",
     org: "UTFPR / InovaGrad",
-    desc: "Concebi e conduzo o MAT-IA, projeto de inovação aprovado em 1º lugar no Edital InovaGrad 2025 (nota 9,6 entre candidatos de toda a UTFPR): da definição do problema e do escopo à entrega. Atuo na coordenação do produto: levantamento de requisitos com os professores, priorização de roadmap, definição de indicadores de aprendizagem e acompanhamento de resultados. Um caso prático de engenharia de produção aplicada à educação, organizando processo, dados e tecnologia num produto real em produção (diagnóstico adaptativo, 650+ questões, correção por IA e relatórios para docentes).",
+    desc: "Concebi e conduzo o MAT-IA, projeto de inovação aprovado em 1º lugar no Edital InovaGrad 2025 (nota 9,6 entre candidatos de toda a UTFPR): da definição do problema e do escopo à entrega. Atuo na coordenação do produto: levantamento de requisitos com os professores, priorização de roadmap, definição de indicadores de aprendizagem e mais de 100 entregas registradas em quadro Kanban por marcos. Um caso prático de engenharia de produção aplicada à educação, organizando processo, dados e tecnologia num produto real em produção (diagnóstico adaptativo, 739 questões, correção por IA e relatórios para docentes).",
   },
   exp2: {
     date: "Desde Jun 2026",
@@ -94,6 +94,7 @@ const pt = {
       "Elaboração de relatórios gerenciais.",
       "Acompanhamento de reuniões.",
       "Mapeamento de processos.",
+      "Levantamento e qualificação de mais de 400 empresas para o time comercial, com organização das informações e critério de priorização.",
     ],
     tagCommunication: "Comunicação com clientes",
   },
@@ -197,6 +198,8 @@ const pt = {
     filters: { all: "Tudo", eng: "Engenharia & gestão", tec: "Dados & tecnologia" },
     inProgressLabel: "Em curso",
     inProgress: ["Inglês técnico", "Lean Seis Sigma Yellow Belt"],
+    certsLabel: "Certificações",
+    certs: ["Claude Impressionador · Hashtag Treinamentos · mai/2026"],
     columns: [
       {
         kicker: ["Engenharia de", "Produção"],
@@ -295,7 +298,7 @@ const en: typeof pt = {
     m3Sub: "UTFPR · 2026",
   },
   marquee:
-    "Production Engineering  ✺  Data  ✺  Applied AI  ✺  Processes  ✺  Maintenance KPIs  ✺  Full Stack  ✺  Management  ✺  ",
+    "Production Engineering  ✺  Management  ✺  Processes  ✺  Projects  ✺  Indicators  ✺  Data  ✺  Applied AI  ✺  ",
   sections: {
     about: "About",
     education: "Education",
@@ -336,14 +339,14 @@ const en: typeof pt = {
     degree: "Bachelor's in Production Engineering",
     school: "Federal University of Technology · Paraná (UTFPR)",
     meta: "Medianeira Campus · PR  /  2025 to 2030 (expected)",
-    tag: "2nd semester · in progress",
+    tag: "3rd semester · in progress",
     btn: "View curriculum",
   },
   exp1: {
-    date: "Since Apr 2026",
+    date: "Mar – Dec 2026",
     role: "Innovation Fellow · Project & Product Coordination · MAT-IA",
     org: "UTFPR / InovaGrad",
-    desc: "I conceived and lead MAT-IA, an innovation project approved in 1st place in the InovaGrad 2025 call (9.6 score among candidates across all of UTFPR): from problem and scope definition to delivery. I handle product coordination: gathering requirements with professors, prioritizing the roadmap, defining learning indicators and tracking results. A practical case of production engineering applied to education, organizing process, data and technology into a real product in production (adaptive diagnosis, 650+ questions, AI grading and reports for teachers).",
+    desc: "I conceived and lead MAT-IA, an innovation project approved in 1st place in the InovaGrad 2025 call (9.6 score among candidates across all of UTFPR): from problem and scope definition to delivery. I handle product coordination: gathering requirements with professors, prioritizing the roadmap, defining learning indicators and over 100 deliveries tracked on a milestone Kanban board. A practical case of production engineering applied to education, organizing process, data and technology into a real product in production (adaptive diagnosis, 739 questions, AI grading and reports for teachers).",
   },
   exp2: {
     date: "Since Jun 2026",
@@ -355,6 +358,7 @@ const en: typeof pt = {
       "Preparing management reports.",
       "Following up on meetings.",
       "Process mapping.",
+      "Surveying and qualifying over 400 companies for the commercial team, organizing the information and setting priority criteria.",
     ],
     tagCommunication: "Client communication",
   },
@@ -456,6 +460,8 @@ const en: typeof pt = {
     filters: { all: "All", eng: "Engineering & management", tec: "Data & technology" },
     inProgressLabel: "In progress",
     inProgress: ["Technical English", "Lean Six Sigma Yellow Belt"],
+    certsLabel: "Certifications",
+    certs: ["Claude Impressionador · Hashtag Treinamentos · may/2026"],
     columns: [
       {
         kicker: ["Production", "Engineering"],

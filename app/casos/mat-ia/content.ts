@@ -225,7 +225,7 @@ const pt: CaseData = {
     "A **divergência entre a nota da IA e a nota final do professor.** Os dois campos já são gravados, e ninguém calcula a diferença. É o indicador de confiança do processo automático: sem ele, dizer que a correção é confiável é fé, não engenharia.",
   closeH2: "É isso que eu quero fazer em operações.",
   closeP:
-    "Estou no 2º período. Não tenho anos de fábrica, mas tenho um sistema em produção onde precisei decidir onde inspecionar, o que padronizar, quanto custa cada unidade e o que eu ainda não posso afirmar. É a mesma conversa de uma linha de montagem, num objeto que eu conseguia construir sozinho.",
+    "Estou no 3º período. Não tenho anos de fábrica, mas tenho um sistema em produção onde precisei decidir onde inspecionar, o que padronizar, quanto custa cada unidade e o que eu ainda não posso afirmar. É a mesma conversa de uma linha de montagem, num objeto que eu conseguia construir sozinho.",
   verPlataforma: "Ver a plataforma",
   voltar: "Voltar ao portfolio",
   footer: "Bernardo Paranhos · Estudo de caso MAT-IA · 2026",
@@ -408,7 +408,7 @@ const en: CaseData = {
     "The **divergence between the AI's grade and the teacher's final grade.** Both fields are already recorded, and nobody calculates the difference. It's the trust indicator of the automatic process: without it, saying the correction is reliable is faith, not engineering.",
   closeH2: "That's what I want to do in operations.",
   closeP:
-    "I'm in my 2nd semester. I don't have years of factory experience, but I have a system in production where I had to decide where to inspect, what to standardize, how much each unit costs and what I still can't claim. It's the same conversation as an assembly line, on an object I could build on my own.",
+    "I'm in my 3rd semester. I don't have years of factory experience, but I have a system in production where I had to decide where to inspect, what to standardize, how much each unit costs and what I still can't claim. It's the same conversation as an assembly line, on an object I could build on my own.",
   verPlataforma: "See the platform",
   voltar: "Back to portfolio",
   footer: "Bernardo Paranhos · MAT-IA case study · 2026",

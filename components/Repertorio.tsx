@@ -149,6 +149,16 @@ export default function Repertorio({ t }: { t: Dict["repertoire"] }) {
           </span>
         ))}
       </div>
+
+      {/* concluidas: tag preenchida separa do que ainda esta em curso */}
+      <div className="rep-progress rep-certs">
+        <span className="rep-progress-label">{t.certsLabel}</span>
+        {t.certs.map((x, i) => (
+          <span key={i} className="tag tag-accent">
+            {x}
+          </span>
+        ))}
+      </div>
     </div>
   );
 }
