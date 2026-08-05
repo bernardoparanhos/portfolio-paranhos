@@ -55,7 +55,7 @@ export default function OpengraphImage() {
             lineHeight: 1.3,
           }}
         >
-          Engenheiro de Produção que resolve problemas de verdade. Dados, IA aplicada e processos.
+          Engenheiro de Produção que resolve problemas de verdade. Processos, dados e IA aplicada.
         </div>
       </div>
       <div style={{ display: "flex", gap: 28, fontSize: 24, color: "#6e6355" }}>

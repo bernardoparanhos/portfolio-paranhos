@@ -6,7 +6,7 @@ export const SITE_URL =
 export const SITE_NAME = "Bernardo Paranhos";
 
 export const SITE_TITLE =
-  "Bernardo Paranhos · Engenharia de Produção, Inovação e IA | UTFPR Medianeira";
+  "Bernardo Paranhos · Engenharia de Produção, Gestão e Inovação | UTFPR Medianeira";
 
 export const SITE_DESCRIPTION =
-  "Bernardo Paranhos, estudante de Engenharia de Produção na UTFPR Medianeira, bolsista InovaGrad aprovado em 1º lugar (nota 9,6) e estagiário em consultoria de gestão. Desenvolve o MAT-IA, plataforma educacional com IA.";
+  "Bernardo Paranhos, graduando em Engenharia de Produção na UTFPR Medianeira, bolsista InovaGrad aprovado em 1º lugar (nota 9,6) e estagiário em consultoria de gestão. Coordena projeto e produto do MAT-IA e publica estudos de caso medindo o próprio processo: inspeção, retrabalho e indicadores com limite declarado. IA, dados e código como ferramentas de gestão.";
