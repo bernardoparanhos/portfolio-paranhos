@@ -256,7 +256,7 @@ const pt = {
     stack: "Next.js · TypeScript · Caprasimo & Figtree",
     location: "Medianeira · PR",
     repo: "Código aberto no GitHub",
-    updated: "© 2026 · atualizado em jul/2026",
+    updated: "© 2026 · atualizado em 05/08/2026",
   },
   cv: {
     label: "CV",
@@ -515,7 +515,7 @@ const en: typeof pt = {
     stack: "Next.js · TypeScript · Caprasimo & Figtree",
     location: "Medianeira · PR",
     repo: "Open source on GitHub",
-    updated: "© 2026 · updated jul/2026",
+    updated: "© 2026 · updated 5 Aug 2026",
   },
   cv: {
     label: "CV",
