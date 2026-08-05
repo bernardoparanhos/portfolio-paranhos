@@ -126,11 +126,15 @@ const pt = {
     status: "Em produção",
     tagline: "Plataforma de Suporte Inteligente ao Aprendizado de Matemática",
     desc: "Sistema educacional com IA para diagnóstico, nivelamento e reforço em matemática de ingressantes em Engenharia na UTFPR Medianeira. Conduzo o MAT-IA como coordenador de produto, da concepção e escopo à entrega (requisitos com professores, roadmap e indicadores de aprendizagem), unindo gestão de projetos e engenharia de produção a um produto real em produção.",
-    caseCta: "Ler o estudo de caso",
+    studiesLabel: "Estudos de caso",
+    studies: [
+      { num: "002", title: "As 670 questões", meta: "ago/2026 · 7 blocos" },
+      { num: "001", title: "A linha de produção", meta: "jul/2026 · 4 situações" },
+    ],
     link: "plataformamati.dev",
     stats: [
-      { num: "+650", label: "questões" },
-      { num: "+10", label: "blocos temáticos" },
+      { num: "739", label: "questões" },
+      { num: "20", label: "blocos temáticos" },
       { num: "20", label: "Q. diagnóstico" },
     ],
     panel: {
@@ -140,6 +144,51 @@ const pt = {
       donut: "84%",
       donutLabel: "nível dominado",
       barsLabel: "desempenho por bloco temático",
+    },
+  },
+  // Faixa "Os bastidores do MAT-IA" — dois estudos de caso, peso visual igual.
+  bastidores: {
+    kicker: "Os bastidores do MAT-IA",
+    h2: "Dois levantamentos escritos sobre o mesmo sistema.",
+    intro:
+      "O 001 lê a plataforma como linha de produção. O 002 mede um processo meu de ponta a ponta, e derruba os próprios números. Cada afirmação cita arquivo ou commit.",
+    cta: "Ler o estudo de caso",
+    c1: {
+      kicker: "Estudo de caso 001 · jul/2026",
+      h2: "Um sistema em produção, lido como linha de produção, com inspeção, custo por peça e limite de retrabalho.",
+      descA:
+        "Abri o MAT-IA pela lente da Engenharia de Produção: onde a linha inspeciona, o que é padronizado, quanto custa cada correção, e o que eu ainda ",
+      descEm: "não",
+      descB:
+        " posso afirmar. Levantamento feito no próprio repositório, com evidência em cada afirmação.",
+      meta: "4 situações · leitura de 6 min",
+      timelineTitle: "A linha de correção",
+      legendOp: "Operação",
+      legendInsp: "Inspeção",
+      steps: ["Foto", "3 tent.?", "Corrigir", "Nota ok?", "Custo", "Professor", "Nota"],
+      quoteA:
+        '"A parte mais útil de um levantamento é saber onde ele não alcança. Onde não há medição, está escrito ',
+      quoteStrong: "não medido",
+      quoteB: '."',
+    },
+    c2: {
+      kicker: "Estudo de caso 002 · ago/2026",
+      h2: "Eu tinha um processo na cabeça. Fui medir e descobri que ele estava certo. O registro é que estava errado.",
+      desc: "Escrevi 670 questões em quatro meses. O console do banco gravou 506 comandos sem que ninguém planejasse. Fui ler o log, medi o retrabalho, escrevi as regras e produzi um lote novo para comparar.",
+      meta: "7 blocos · leitura de 8 min",
+      numsTitle: "O que o log guardou",
+      numsPeriod: "abr → ago / 2026",
+      nums: [
+        { num: "506", label: "comandos no log" },
+        { num: "670", label: "questões medidas" },
+        { num: "7", label: "famílias de defeito" },
+        { num: "81%", label: "acerto de primeira" },
+      ],
+      tools: [
+        { l1: "Moldaram", l2: "as questões" },
+        { l1: "Guardou", l2: "as regras" },
+        { l1: "A inspeção", l2: "é minha" },
+      ],
     },
   },
   repertoire: {
@@ -338,11 +387,15 @@ const en: typeof pt = {
     status: "In production",
     tagline: "Intelligent Support Platform for Math Learning",
     desc: "AI-powered educational system for math diagnosis, leveling and reinforcement for incoming Engineering students at UTFPR Medianeira. I lead MAT-IA as product coordinator, from concept and scope to delivery (requirements with professors, roadmap and learning indicators), combining project management and production engineering into a real product in production.",
-    caseCta: "Read the case study",
+    studiesLabel: "Case studies",
+    studies: [
+      { num: "002", title: "The 670 questions", meta: "aug/2026 · 7 blocks" },
+      { num: "001", title: "The production line", meta: "jul/2026 · 4 situations" },
+    ],
     link: "plataformamati.dev",
     stats: [
-      { num: "+650", label: "questions" },
-      { num: "+10", label: "thematic blocks" },
+      { num: "739", label: "questions" },
+      { num: "20", label: "thematic blocks" },
       { num: "20", label: "diagnostic Qs" },
     ],
     panel: {
@@ -352,6 +405,49 @@ const en: typeof pt = {
       donut: "84%",
       donutLabel: "level mastered",
       barsLabel: "performance by thematic block",
+    },
+  },
+  bastidores: {
+    kicker: "Behind MAT-IA",
+    h2: "Two write-ups about the same system.",
+    intro:
+      "The 001 reads the platform as a production line. The 002 measures a process of mine end to end, and knocks down its own numbers. Every claim cites a file or a commit.",
+    cta: "Read the case study",
+    c1: {
+      kicker: "Case study 001 · jul/2026",
+      h2: "A system in production, read as a production line, with inspection, cost per unit and a rework limit.",
+      descA:
+        "I opened MAT-IA through the lens of Production Engineering: where the line inspects, what is standardized, how much each correction costs, and what I still ",
+      descEm: "cannot",
+      descB: " claim. Surveyed in the repository itself, with evidence behind every statement.",
+      meta: "4 situations · 6 min read",
+      timelineTitle: "The correction line",
+      legendOp: "Operation",
+      legendInsp: "Inspection",
+      steps: ["Photo", "3 tries?", "Correct", "Score ok?", "Cost", "Teacher", "Score"],
+      quoteA:
+        '"The most useful part of a survey is knowing where it does not reach. Where there is no measurement, it says ',
+      quoteStrong: "not measured",
+      quoteB: '."',
+    },
+    c2: {
+      kicker: "Case study 002 · aug/2026",
+      h2: "I had a process in my head. I went to measure it and found it was right. The record was what was wrong.",
+      desc: "I wrote 670 questions in four months. The database console logged 506 commands with nobody planning for it. I read the log, measured the rework, wrote the rules and produced a new batch to compare.",
+      meta: "7 blocks · 8 min read (in Portuguese)",
+      numsTitle: "What the log kept",
+      numsPeriod: "apr → aug / 2026",
+      nums: [
+        { num: "506", label: "commands in the log" },
+        { num: "670", label: "questions measured" },
+        { num: "7", label: "defect families" },
+        { num: "81%", label: "right first time" },
+      ],
+      tools: [
+        { l1: "Shaped", l2: "the questions" },
+        { l1: "Kept", l2: "the rules" },
+        { l1: "The inspection", l2: "is mine" },
+      ],
     },
   },
   repertoire: {

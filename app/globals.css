@@ -5,6 +5,7 @@
   --accent: #c67139;
   --accent-100: #f3ddc9;
   --accent-200: #ecc9a8;
+  --accent-300: #dfae7e;
   --accent-600: #a85a2a;
   --accent-700: #8a4a22;
   --accent2: #7a8a5e;
@@ -13,6 +14,7 @@
   --n100: #f0e6d2;
   --n200: #e5d9c2;
   --n300: #d4c5a8;
+  --n400: #b3a58e;
   --n500: #8a7f70;
   --n600: #6e6355;
   --n700: #5c5348;
@@ -37,12 +39,14 @@
   --n100: #2a2118;
   --n200: #3a2f23;
   --n300: #4a3d2e;
+  --n400: #7d6f5d;
   --n500: #a3927b;
   --n600: #bfae95;
   --n700: #d8ccb8;
   --accent: #d98c52;
   --accent-100: #38281a;
   --accent-200: #63472a;
+  --accent-300: #7a5533;
   --accent-600: #e59c66;
   --accent-700: #f0b98d;
   --accent2: #94a877;
@@ -1458,6 +1462,379 @@ a:focus-visible,
   font-weight: 500;
 }
 
+/* ═══ Faixa "Os bastidores do MAT-IA" — os dois estudos de caso ═══ */
+/* Não é seção numerada: é uma faixa full-width entre Projetos e Contato.
+   Os dois cards têm o mesmo peso; o que muda é o elemento visual à direita
+   (timeline no 001, grade de números no 002) — nada se repete. */
+.bastidores {
+  background: var(--surface-soft);
+  border-top: 1px solid var(--n200);
+  border-bottom: 1px solid var(--n200);
+}
+.bastidores-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.bast-head {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 64px;
+  align-items: end;
+  padding-top: 72px;
+}
+.bast-kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.bast-h2 {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  margin: 16px 0 0;
+  max-width: 20em;
+}
+.bast-intro {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--n600);
+  margin-bottom: 4px;
+}
+/* a régua separa o cabeçalho do primeiro card — não fica colada nele */
+.bast-case {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 64px;
+  align-items: center;
+  margin-top: 64px;
+  padding: 64px 0 62px;
+  border-top: 1px solid var(--n200);
+}
+/* sem isso o min-width:auto dos itens de grid alarga a trilha e estoura a
+   faixa inteira no mobile (o texto passa a quebrar fora da viewport) */
+.bast-head > *,
+.bast-case > * {
+  min-width: 0;
+}
+.bast-case-kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent-700);
+}
+.bast-dash {
+  width: 70px;
+  height: 1px;
+  background: var(--n300);
+}
+.bast-case-h2 {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: clamp(30px, 3.4vw, 42px);
+  line-height: 1.08;
+  margin: 18px 0 0;
+  max-width: 17em;
+}
+.bast-case-p {
+  font-size: 16.5px;
+  line-height: 1.64;
+  color: var(--n700);
+  max-width: 32em;
+  margin-top: 18px;
+}
+.bast-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin-top: 30px;
+}
+.bast-meta {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--n500);
+}
+/* cabeçalho do elemento visual (comum aos dois cards) */
+.bast-viz-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.bast-viz-title,
+.bast-viz-period {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.bast-viz-period {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+}
+.bast-legend {
+  display: flex;
+  gap: 12px;
+}
+.bast-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.bast-mk-op,
+.bast-mk-insp {
+  display: block;
+  flex: none;
+}
+.bast-mk-op {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent2);
+}
+.bast-mk-insp {
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+/* trilho horizontal: a barra passa por baixo e os discos a "furam" */
+.bast-track-scroll {
+  overflow-x: auto;
+}
+.bast-track-wrap {
+  position: relative;
+  min-width: 100%;
+}
+.bast-track {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  top: 13px;
+  height: 2px;
+  background: var(--n300);
+}
+.bast-steps {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.bast-step {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.bast-disc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--surface-soft);
+}
+.bast-mark {
+  display: block;
+  flex: none;
+}
+.bast-mark.mark-end {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 3px solid var(--n400);
+}
+.bast-mark.mark-insp {
+  width: 13px;
+  height: 13px;
+  background: var(--accent);
+  transform: rotate(45deg);
+}
+.bast-mark.mark-op {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--accent2);
+}
+.bast-step-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--n500);
+  white-space: nowrap;
+}
+.bast-quote {
+  margin-top: 26px;
+  padding: 18px 22px;
+  background: var(--surface);
+  border: 1px solid var(--n200);
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.58;
+  font-style: italic;
+  color: var(--n700);
+}
+.bast-quote strong {
+  font-style: normal;
+}
+/* grade de números do 002 — superfície escura própria, igual nos dois temas */
+.bast-nums {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.bast-num {
+  background: #211a12;
+  color: #f5ead8;
+  border-radius: 18px;
+  padding: 22px 24px 20px;
+}
+.bast-num-fig {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 1;
+}
+.bast-num-fig.accent {
+  color: #d9884c;
+}
+.bast-num-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b9ab97;
+  margin-top: 9px;
+  line-height: 1.5;
+}
+/* faixa das ferramentas — fecha a grade de números com quem fez o quê */
+.bast-tools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 14px;
+  padding: 18px 24px 19px;
+  background: #211a12;
+  border-radius: 18px;
+}
+.bast-tool + .bast-tool {
+  padding-left: 20px;
+  border-left: 1px solid #3a2f23;
+}
+.bast-tool-icons {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 15px;
+  color: #d9884c;
+}
+.bast-tool-icons img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+/* o leito é sempre escuro: a marca monocromática entra branca nos dois temas */
+.bast-tool-icons img.mono {
+  filter: invert(1);
+}
+.bast-tool-label {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #d9884c;
+  margin-top: 12px;
+  line-height: 1.55;
+}
+/* Os dois estudos entram pelo nome, embaixo do link da plataforma, e cada
+   linha leva direto à peça — não é âncora pra faixa. */
+.matia-studies {
+  margin-top: 26px;
+}
+.matia-studies-label {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--n500);
+  margin-bottom: 4px;
+}
+.matia-study {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 13px 4px 13px 0;
+  border-top: 1px solid var(--n200);
+  color: inherit;
+  transition: border-color 0.25s;
+}
+.matia-study:hover {
+  color: inherit;
+  border-color: var(--accent-200);
+}
+.matia-study-num {
+  font-family: var(--font-heading), serif;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--accent-200);
+  transition: color 0.25s;
+}
+.matia-study:hover .matia-study-num {
+  color: var(--accent);
+}
+.matia-study-body {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.matia-study-title {
+  font-size: 15.5px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.matia-study-meta {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  color: var(--n500);
+  margin-top: 4px;
+}
+.matia-study-arrow {
+  color: var(--n400);
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.25s;
+}
+.matia-study:hover .matia-study-arrow {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
 /* ═══ 04 · Repertório ═══ */
 .rep-top {
   display: flex;
@@ -1730,6 +2107,28 @@ a:focus-visible,
   .section-mid {
     padding: 32px 32px 64px;
   }
+  /* faixa dos bastidores: uma coluna; a timeline do 001 vira rolagem horizontal */
+  .bastidores-inner {
+    padding: 0 32px;
+  }
+  .bast-head,
+  .bast-case {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .bast-head {
+    padding-top: 56px;
+  }
+  .bast-intro {
+    margin-bottom: 0;
+  }
+  .bast-case {
+    margin-top: 48px;
+    padding: 48px 0 46px;
+  }
+  .bast-track-wrap {
+    min-width: 520px;
+  }
   /* nav vira barra full-width com hambúrguer à direita */
   .nav-wrap {
     padding: 0 16px;
@@ -1864,6 +2263,33 @@ a:focus-visible,
 @media (max-width: 560px) {
   .container {
     padding: 0 24px;
+  }
+  .bastidores-inner {
+    padding: 0 24px;
+  }
+  /* ferramentas: três colunas não cabem — vira lista, ícone ao lado do rótulo */
+  .bast-tools {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 4px 22px 6px;
+  }
+  .bast-tool {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 0;
+  }
+  .bast-tool + .bast-tool {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid #3a2f23;
+  }
+  .bast-tool-icons {
+    flex: none;
+    width: 59px;
+  }
+  .bast-tool-label {
+    margin-top: 0;
   }
   /* card Painel: métricas 2 em cima + 1 embaixo; aging mais justo; menos padding */
   .pa-metrics {
@@ -2682,6 +3108,1037 @@ a:focus-visible,
     width: 130px;
     height: 130px;
     right: 20px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   Estudo de caso 002 · /casos/670-questoes
+   Reaproveita a casca do 001 (.case-bar, .case-back, .case-bar-tag).
+   Três superfícies são literais de propósito e NÃO invertem no dark:
+   #211a12 (cards de número), #241c13 (log) e #0c1220 (leito dos prints).
+   ═══════════════════════════════════════════════ */
+.c2 {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+.c2 .case-bar-right {
+  gap: 14px;
+}
+.c2-hero,
+.c2-sec,
+.c2-numeros-sec {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 0 40px 84px;
+}
+.c2-hero {
+  padding: 76px 40px 48px;
+}
+.c2-numeros-sec {
+  padding-bottom: 76px;
+}
+
+/* ── hero ── */
+.c2-rail {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  max-width: 44em;
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--n200);
+}
+.c2-rail-l,
+.c2-rail-r {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.c2-rail-l {
+  letter-spacing: 0.24em;
+  color: var(--accent-700);
+}
+.c2-rail-r {
+  letter-spacing: 0.18em;
+  color: var(--n500);
+  white-space: nowrap;
+}
+.c2-h1 {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: clamp(38px, 5.2vw, 58px);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  max-width: 16em;
+}
+.c2-h1 span {
+  color: var(--accent-600);
+}
+.c2-lead {
+  font-size: 19px;
+  line-height: 1.62;
+  color: var(--n700);
+  margin: 26px 0 0;
+  max-width: 36em;
+}
+.c2-ficha {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 16px 30px;
+  width: max-content;
+  margin-top: 40px;
+}
+.c2-ficha-cell {
+  display: flex;
+  flex-direction: column;
+}
+.c2-ficha-cell + .c2-ficha-cell {
+  padding-left: 20px;
+  border-left: 1px solid var(--n200);
+}
+.c2-ficha-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.c2-ficha-value {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-top: 6px;
+  max-width: 12em;
+}
+
+/* ── faixa de números ── */
+.c2-numeros {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.c2-numero {
+  background: #211a12;
+  color: #f5ead8;
+  border-radius: 20px;
+  padding: 26px 26px 24px;
+}
+.c2-numero-fig {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 1;
+}
+.c2-numero-fig.accent {
+  color: #d9884c;
+}
+.c2-numero-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #b9ab97;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.c2-numeros-nota {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--n500);
+  margin-top: 14px;
+}
+
+/* ── cabeçalho de bloco (repete em 00–06) ── */
+.c2-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.c2-num {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--accent-200);
+}
+.c2-kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.c2-h2 {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1.12;
+  margin: 0 0 18px;
+  max-width: 26em;
+}
+.c2-body {
+  font-size: 17px;
+  line-height: 1.66;
+  color: var(--n700);
+  max-width: 44em;
+}
+.c2-body + .c2-body {
+  margin-top: 14px;
+}
+.c2-fecho-frase {
+  font-size: 15px;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--n600);
+  max-width: 42em;
+  margin-top: 24px;
+}
+.c2-nota {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+  color: var(--n400);
+  margin-top: 12px;
+}
+
+/* ── painel genérico ── */
+.c2-painel {
+  background: var(--surface);
+  border: 1px solid var(--n200);
+  border-radius: var(--radius-lg);
+  padding: 30px 34px 28px;
+}
+.c2-painel-strong {
+  background: var(--surface-strong);
+}
+.c2-painel-graf {
+  padding-bottom: 24px;
+}
+.c2-painel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+.c2-painel-kicker {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.c2-legend {
+  display: flex;
+  gap: 16px;
+}
+.c2-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.c2-sq,
+.c2-dot {
+  display: block;
+  width: 9px;
+  height: 9px;
+  flex: none;
+}
+.c2-sq {
+  border-radius: 3px;
+}
+.c2-sq-maq {
+  background: var(--n300);
+}
+.c2-sq-hum {
+  background: var(--accent);
+}
+.c2-dot {
+  border-radius: 50%;
+}
+.c2-dot-hist {
+  background: var(--n400);
+}
+.c2-dot-novo {
+  background: var(--accent);
+}
+
+/* ── 00 · fluxo de autoria ──
+   Três etapas de máquina (logo em quadro creme) e duas humanas (numeral em
+   quadro terracota). O contraste é a informação — não uniformizar. */
+.c2-fluxo {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.c2-etapa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.c2-etapa-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--n200);
+}
+.c2-etapa.humano .c2-etapa-box {
+  background: var(--accent-100);
+  border-color: var(--accent-300);
+}
+/* marcas de terceiros: reproduzidas fielmente, sem sombra nem recorte */
+.c2-etapa-box img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+/* Única exceção, e ela é fidelidade e não estilização: a marca da OpenAI é
+   monocromática e tem versão oficial preta e branca. Dentro de <img> o
+   currentColor resolve preto — correto no creme, invisível no espresso.
+   O invert de um preto puro devolve exatamente a versão branca. As outras
+   três são coloridas e não recebem tratamento nenhum. */
+:root[data-theme="dark"] .c2-etapa-box img.mono {
+  filter: invert(1);
+}
+.c2-etapa-num {
+  font-family: var(--font-mono), monospace;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--accent-700);
+}
+.c2-etapa-step {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--n500);
+  margin-top: 16px;
+}
+.c2-etapa.humano .c2-etapa-step {
+  color: var(--accent-700);
+}
+.c2-etapa-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 5px;
+}
+.c2-etapa-desc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--n600);
+  margin-top: 6px;
+}
+.c2-tese {
+  margin-top: 30px;
+  padding: 20px 24px;
+  background: var(--accent-100);
+  border-radius: 16px;
+  font-size: 16.5px;
+  line-height: 1.55;
+  font-weight: 600;
+  color: var(--accent-700);
+  max-width: 40em;
+}
+.c2-tese em {
+  font-style: italic;
+}
+
+/* ── 01 · o log ── */
+.c2-log {
+  background: #241c13;
+  border-radius: 20px;
+  padding: 26px 30px;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #c9bba6;
+  overflow-x: auto;
+}
+.c2-log-comment {
+  color: #8c8172;
+  white-space: pre;
+}
+.c2-log-cmd {
+  display: flex;
+  gap: 24px;
+  white-space: pre;
+}
+.c2-log-cmd .hi {
+  color: #d9884c;
+}
+.c2-log-rows {
+  margin-left: auto;
+  color: #8c8172;
+}
+.c2-alerta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+  margin-top: 18px;
+  padding: 20px 24px;
+  background: var(--surface-soft);
+  border: 1px solid var(--n200);
+  border-radius: 18px;
+}
+.c2-alerta svg {
+  color: var(--accent-700);
+  margin-top: 2px;
+  flex: none;
+}
+.c2-alerta p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--n700);
+}
+
+/* ── 02 · gráfico e famílias ──
+   O gráfico mostra AUSÊNCIA de tendência: nada de seta, gradiente ou área
+   preenchida sob a curva. */
+.c2-ax,
+.c2-media,
+.c2-val,
+.c2-date,
+.c2-anot {
+  font-family: var(--font-mono), monospace;
+}
+.c2-ax {
+  font-size: 10px;
+  fill: var(--n500);
+}
+.c2-media {
+  font-size: 10.5px;
+  fill: var(--accent-700);
+}
+.c2-val {
+  font-size: 10.5px;
+  fill: var(--n600);
+}
+.c2-val-novo {
+  font-size: 11.5px;
+  font-weight: 600;
+  fill: var(--accent-700);
+}
+.c2-date {
+  font-size: 9.5px;
+  fill: var(--n500);
+}
+.c2-date-novo {
+  font-weight: 600;
+  fill: var(--accent-700);
+}
+.c2-anot {
+  font-size: 9px;
+  fill: var(--n400);
+}
+.c2-anot-novo {
+  fill: var(--accent-700);
+}
+.c2-graf-legenda {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--n600);
+  margin-top: 10px;
+}
+.c2-familias {
+  margin-top: 24px;
+}
+.c2-familias > .c2-painel-kicker {
+  margin-bottom: 22px;
+}
+.c2-fam-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.c2-fam-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 96px;
+  gap: 14px;
+  align-items: center;
+}
+.c2-fam-nome {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+/* sálvia = trabalho planejado, não defeito. A cor é o que comunica isso. */
+.c2-fam-nome.tone-b {
+  color: var(--accent2-700);
+}
+.c2-fam-bar {
+  display: block;
+  height: 14px;
+  border-radius: 7px;
+  background: var(--accent);
+}
+.c2-fam-bar.tone-b {
+  background: var(--accent2);
+}
+.c2-fam-val {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  color: var(--n600);
+  text-align: right;
+}
+.c2-fam-nota {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--n600);
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--n200);
+}
+.c2-fam-nota strong {
+  color: var(--accent2-700);
+}
+
+/* ── 03 · as sete reescritas ── */
+.c2-caso-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 20px;
+  align-items: stretch;
+}
+.c2-log-tl {
+  font-size: 13.5px;
+  line-height: 2.15;
+}
+.c2-tl-row {
+  display: flex;
+  gap: 16px;
+  white-space: pre;
+}
+.c2-tl-t {
+  color: #8c8172;
+}
+/* a linha que funcionou é a única clara */
+.c2-tl-row.ok,
+.c2-tl-row.ok .c2-tl-t {
+  color: #f0e4cf;
+}
+.c2-tl-res {
+  margin-left: auto;
+  padding-left: 20px;
+  color: #d9636a;
+}
+.c2-tl-res.ok {
+  color: #9aad76;
+}
+.c2-segundo {
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px;
+  border-radius: 20px;
+}
+.c2-segundo > .c2-painel-kicker {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+.c2-segundo-fig {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1;
+  margin-top: 14px;
+}
+.c2-segundo-fig span {
+  font-size: 22px;
+  color: var(--n500);
+}
+.c2-segundo-p {
+  font-size: 14.5px;
+  line-height: 1.58;
+  color: var(--n700);
+  margin-top: 12px;
+}
+.c2-code {
+  background: #241c13;
+  border-radius: 14px;
+  padding: 16px 24px;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  color: #c9bba6;
+  width: max-content;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.c2-code .ok {
+  color: #9aad76;
+}
+
+/* ── 04 · fonte × registro ── */
+.c2-par {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.c2-card-fonte,
+.c2-card-registro {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 24px 28px;
+}
+.c2-card-fonte {
+  border: 1px solid var(--accent2-200);
+}
+.c2-card-registro {
+  border: 1px solid var(--accent-200);
+}
+.c2-par-kicker,
+.c2-par-pe {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+}
+.c2-par-kicker {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  margin-bottom: 14px;
+}
+.c2-par-pe {
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  margin-top: 14px;
+  text-transform: none;
+}
+.c2-par-kicker.fonte,
+.c2-par-pe.fonte {
+  color: var(--accent2-700);
+}
+.c2-par-kicker.registro,
+.c2-par-pe.registro {
+  color: var(--accent-700);
+}
+.c2-par-frase {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.c2-par-frase.sm {
+  font-size: 16px;
+  line-height: 1.5;
+}
+.c2-par-frase u {
+  text-decoration-color: var(--accent2);
+  text-underline-offset: 3px;
+}
+.c2-entre {
+  font-size: 15.5px;
+  line-height: 1.62;
+  color: var(--n700);
+  margin: 18px 0 32px;
+  max-width: 44em;
+}
+.c2-entre code {
+  font-family: var(--font-mono), monospace;
+  font-size: 13.5px;
+}
+
+/* ── 05 · cofre, lotes e sessão ── */
+.c2-cofre {
+  margin-bottom: 24px;
+  padding: 28px 32px 30px;
+}
+.c2-cofre-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.c2-cofre-head img {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  object-fit: contain;
+}
+.c2-cofre-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.c2-cofre-sub {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--n500);
+  margin-top: 4px;
+}
+.c2-cofre-p {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--n700);
+  margin: 20px 0 14px;
+}
+.c2-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.c2-pill {
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--surface-dim);
+  color: var(--n700);
+  border: 1px solid var(--n200);
+}
+/* a pílula preenchida é a informação: é o campo que faltava */
+.c2-pill.fill {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+.c2-cofre-nota {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--n700);
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--n200);
+  max-width: 46em;
+}
+.c2-cofre-nota strong {
+  color: var(--accent-700);
+}
+.c2-lotes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.c2-lote {
+  background: var(--surface);
+  border: 1px solid var(--n200);
+  border-radius: 20px;
+  padding: 22px 24px;
+}
+.c2-lote-kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.c2-lote-pct {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  margin-top: 14px;
+}
+.c2-lote-desc {
+  font-size: 13px;
+  margin-top: 8px;
+}
+/* o lote sem documento é o basal — recuado, não celebrado */
+.c2-lote.base .c2-lote-pct,
+.c2-lote.base .c2-lote-desc {
+  color: var(--n600);
+}
+.c2-lote.hi {
+  background: var(--accent-100);
+  border-color: var(--accent-300);
+}
+.c2-lote.hi .c2-lote-kicker,
+.c2-lote.hi .c2-lote-pct {
+  color: var(--accent-700);
+}
+.c2-lote.hi .c2-lote-desc {
+  color: var(--accent-700);
+  font-weight: 600;
+}
+.c2-sessao {
+  margin-top: 24px;
+  background: var(--surface-soft);
+  padding: 28px 34px;
+}
+.c2-sessao > .c2-painel-kicker {
+  margin-bottom: 18px;
+}
+.c2-sessao-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 32px;
+}
+.c2-sessao-cell {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  border-top: 1px solid var(--n200);
+}
+.c2-sessao-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.c2-sessao-value {
+  font-size: 15.5px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+/* ── 06 · o defeito na tela ── */
+.c2-figs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 24px;
+  align-items: start;
+}
+.c2-fig {
+  margin: 0;
+}
+.c2-fig-frame {
+  background: var(--surface);
+  border: 1px solid var(--n200);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: var(--shadow-md);
+}
+/* a que desmonta o próprio indicador — a borda sinaliza isso */
+.c2-fig-frame.destaque {
+  border-color: var(--accent-300);
+}
+/* o leito escuro evita halo na borda: os prints são de tela escura */
+.c2-fig-bed {
+  background: #0c1220;
+  border-radius: 9px;
+  overflow: hidden;
+}
+.c2-fig-bed img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.c2-fig figcaption {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--n600);
+  margin-top: 12px;
+}
+.c2-fig figcaption strong {
+  color: var(--accent-700);
+}
+.c2-fig figcaption code {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+}
+
+/* ── 07 · o que eu não posso afirmar ── */
+.c2-limites {
+  background: var(--surface-soft);
+  border: 1px solid var(--n300);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px 40px;
+}
+.c2-limites-kicker {
+  letter-spacing: 0.2em;
+  margin-bottom: 18px;
+}
+.c2-limites-h2 {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.14;
+  margin-bottom: 28px;
+  max-width: 24em;
+}
+.c2-limites-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+.c2-limites-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.c2-limites-label.na {
+  color: var(--accent-700);
+}
+.c2-limites-label.falta {
+  color: var(--accent2-700);
+}
+.c2-limites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--n700);
+}
+.c2-limites-fecho {
+  margin-top: 30px;
+  padding: 24px 28px;
+  background: var(--surface);
+  border: 1px solid var(--n200);
+  border-radius: 18px;
+  font-size: 16px;
+  line-height: 1.64;
+  font-style: italic;
+  color: var(--n700);
+}
+.c2-limites-fecho strong {
+  font-style: normal;
+}
+
+/* ── fecho ── */
+.c2-fecho-sec {
+  padding-bottom: 0;
+}
+.c2-fecho {
+  padding-bottom: 70px;
+}
+.c2-fecho-h2 {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.1;
+  max-width: 24em;
+}
+.c2-fecho-p {
+  font-size: 17.5px;
+  line-height: 1.64;
+  color: var(--n700);
+  margin-top: 20px;
+  max-width: 40em;
+}
+.c2-fecho-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+.c2-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 24px 0 56px;
+  border-top: 1px solid var(--n300);
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--n500);
+}
+.c2-footer-mark {
+  color: var(--accent);
+}
+
+@media (max-width: 880px) {
+  .c2-hero,
+  .c2-sec,
+  .c2-numeros-sec {
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+  .c2-h1 {
+    font-size: clamp(32px, 8vw, 46px);
+  }
+  .c2-num {
+    font-size: 44px;
+  }
+  .c2-h2 {
+    font-size: 28px;
+  }
+  .c2-ficha {
+    grid-template-columns: repeat(2, 1fr);
+    width: auto;
+    gap: 20px 28px;
+  }
+  .c2-ficha-cell + .c2-ficha-cell {
+    padding-left: 0;
+    border-left: none;
+  }
+  .c2-numeros,
+  .c2-lotes,
+  .c2-sessao-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* o fluxo não empilha em uma coluna só: a leitura de etapas se perde */
+  .c2-fluxo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 26px 20px;
+  }
+  .c2-fam-row {
+    grid-template-columns: 130px 1fr 88px;
+  }
+  .c2-caso-grid,
+  .c2-par,
+  .c2-figs,
+  .c2-limites-cols {
+    grid-template-columns: 1fr;
+  }
+  .c2-limites-cols {
+    gap: 28px;
+  }
+  .c2-painel,
+  .c2-cofre,
+  .c2-sessao,
+  .c2-limites {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+  .c2-log,
+  .c2-log-tl {
+    padding: 22px;
+  }
+  .c2-fecho-h2 {
+    font-size: 30px;
+  }
+}
+@media (max-width: 620px) {
+  /* o trilho do hero empilha: o item da direita não cabe sem quebrar */
+  .c2-rail {
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+  .c2-rail-r {
+    white-space: normal;
+  }
+}
+@media (max-width: 520px) {
+  /* famílias: nome + valor na primeira linha, barra em toda a largura abaixo */
+  .c2-fam-row {
+    grid-template-columns: 1fr auto;
+    gap: 6px 10px;
+  }
+  .c2-fam-track {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  /* números grandes em dois por linha: encolhem pra não estourar o card */
+  .c2-numero {
+    padding: 20px 18px 18px;
+  }
+  .c2-numero-fig {
+    font-size: 36px;
+  }
+  .c2-lote {
+    padding: 18px 20px;
+  }
+  .c2-lote-pct {
+    font-size: 34px;
   }
 }
 

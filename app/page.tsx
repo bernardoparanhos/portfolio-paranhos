@@ -7,6 +7,7 @@ import Effects from "@/components/Effects";
 import Repertorio from "@/components/Repertorio";
 import ThemeToggle from "@/components/ThemeToggle";
 import CvButton from "@/components/CvButton";
+import BastidoresTools from "@/components/BastidoresTools";
 import portrait from "@/public/foto-perfil.jpeg";
 import { translations, type Lang } from "./i18n";
 
@@ -39,6 +40,13 @@ const PRINCIPLE_ICONS = [
     <path d="M21 13v1a4 4 0 0 1-4 4H3" />
   </svg>,
 ];
+
+// Destinos dos dois estudos, alinhados por índice com t.proj2.studies (002, 001).
+const STUDY_HREFS = ["/casos/670-questoes", "/casos/mat-ia"];
+
+// Marcadores da "linha de correção" (card 001): as duas pontas são círculos
+// vazados; no meio alternam inspeção (losango) e operação (círculo sólido).
+const LINHA_MARKS = ["end", "insp", "op", "insp", "op", "insp", "end"];
 
 // Cores das marcas da tabela de aging (por faixa). A "+30 dias" é a única enfatizada.
 const AGING_META: { mark: string; emph?: boolean }[] = [
@@ -381,17 +389,43 @@ export default function Home() {
                   ))}
                 </div>
                 <div className="matia-ctas">
-                  <Link href="/casos/mat-ia" className="matia-cta-primary">
-                    {t.proj2.caseCta}
-                  </Link>
                   <a
                     href="https://landing.plataformamati.dev/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="matia-cta-ghost"
+                    className="matia-cta-primary"
                   >
-                    {t.proj2.link}
+                    {t.proj2.link} →
                   </a>
+                </div>
+
+                {/* Os dois estudos entram pelo nome e levam direto à peça — sem
+                    escala na faixa lá embaixo. */}
+                <div className="matia-studies">
+                  <span className="matia-studies-label">{t.proj2.studiesLabel}</span>
+                  {t.proj2.studies.map((s, i) => (
+                    <Link key={s.num} href={STUDY_HREFS[i]} className="matia-study">
+                      <span className="matia-study-num">{s.num}</span>
+                      <span className="matia-study-body">
+                        <span className="matia-study-title">{s.title}</span>
+                        <span className="matia-study-meta">{s.meta}</span>
+                      </span>
+                      <svg
+                        className="matia-study-arrow"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  ))}
                 </div>
               </div>
 
@@ -521,6 +555,112 @@ export default function Home() {
                   </div>
                 </div>
               </aside>
+            </article>
+          </div>
+        </section>
+
+        {/* OS BASTIDORES DO MAT-IA — faixa dos dois estudos de caso.
+            Não é seção numerada: é a ponte entre Projetos e Contato. */}
+        <section id="estudo-de-caso" className="bastidores" aria-label={t.bastidores.kicker}>
+          <div className="bastidores-inner">
+            <div data-reveal className="bast-head">
+              <div>
+                <div className="bast-kicker">{t.bastidores.kicker}</div>
+                <h2 className="bast-h2">{t.bastidores.h2}</h2>
+              </div>
+              <p className="bast-intro">{t.bastidores.intro}</p>
+            </div>
+
+            {/* Card 002 — o elemento visual é a grade de números (nada se repete) */}
+            <article data-reveal className="bast-case">
+              <div>
+                <div className="bast-case-kicker">
+                  <span>{t.bastidores.c2.kicker}</span>
+                  <span className="bast-dash" />
+                </div>
+                <h3 className="bast-case-h2">{t.bastidores.c2.h2}</h3>
+                <p className="bast-case-p">{t.bastidores.c2.desc}</p>
+                <div className="bast-actions">
+                  <Link href="/casos/670-questoes" className="btn btn-primary bast-btn">
+                    {t.bastidores.cta}
+                  </Link>
+                  <span className="bast-meta">{t.bastidores.c2.meta}</span>
+                </div>
+              </div>
+
+              <div className="bast-viz">
+                <div className="bast-viz-head">
+                  <span className="bast-viz-title">{t.bastidores.c2.numsTitle}</span>
+                  <span className="bast-viz-period">{t.bastidores.c2.numsPeriod}</span>
+                </div>
+                <div className="bast-nums">
+                  {t.bastidores.c2.nums.map((n, i) => (
+                    <div key={i} className="bast-num">
+                      <div className={`bast-num-fig${i === 3 ? " accent" : ""}`}>{n.num}</div>
+                      <div className="bast-num-label">{n.label}</div>
+                    </div>
+                  ))}
+                </div>
+                <BastidoresTools tools={t.bastidores.c2.tools} />
+              </div>
+            </article>
+
+            {/* Card 001 — o elemento visual é a timeline */}
+            <article data-reveal className="bast-case">
+              <div>
+                <div className="bast-case-kicker">
+                  <span>{t.bastidores.c1.kicker}</span>
+                  <span className="bast-dash" />
+                </div>
+                <h3 className="bast-case-h2">{t.bastidores.c1.h2}</h3>
+                <p className="bast-case-p">
+                  {t.bastidores.c1.descA}
+                  <em>{t.bastidores.c1.descEm}</em>
+                  {t.bastidores.c1.descB}
+                </p>
+                <div className="bast-actions">
+                  <Link href="/casos/mat-ia" className="btn btn-primary bast-btn">
+                    {t.bastidores.cta}
+                  </Link>
+                  <span className="bast-meta">{t.bastidores.c1.meta}</span>
+                </div>
+              </div>
+
+              <div className="bast-viz">
+                <div className="bast-viz-head">
+                  <span className="bast-viz-title">{t.bastidores.c1.timelineTitle}</span>
+                  <span className="bast-legend">
+                    <span className="bast-legend-item">
+                      <span className="bast-mk-op" />
+                      {t.bastidores.c1.legendOp}
+                    </span>
+                    <span className="bast-legend-item">
+                      <span className="bast-mk-insp" />
+                      {t.bastidores.c1.legendInsp}
+                    </span>
+                  </span>
+                </div>
+                <div className="bast-track-scroll">
+                  <div className="bast-track-wrap">
+                    <div className="bast-track" />
+                    <div className="bast-steps">
+                      {t.bastidores.c1.steps.map((s, i) => (
+                        <span key={i} className="bast-step">
+                          <span className="bast-disc">
+                            <span className={`bast-mark mark-${LINHA_MARKS[i]}`} />
+                          </span>
+                          <span className="bast-step-label">{s}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <p className="bast-quote">
+                  {t.bastidores.c1.quoteA}
+                  <strong>{t.bastidores.c1.quoteStrong}</strong>
+                  {t.bastidores.c1.quoteB}
+                </p>
+              </div>
             </article>
           </div>
         </section>
