@@ -675,15 +675,15 @@ export default function CaseContent() {
               <div className="c2-fig-bed">
                 <img
                   src="/casos/670-questoes/q36-q42-antes-depois.png"
-                  alt="Antes e depois: à esquerda a questão 36 com comando cru e parábola fora de escala; à direita a questão 42, depois da regra escrita"
+                  alt="Depois e antes: à esquerda a questão 42, produzida depois da regra escrita; à direita a questão 36, com comando cru e parábola fora de escala"
                   loading="lazy"
                   decoding="async"
                 />
               </div>
             </div>
             <figcaption>
-              À esquerda, o enunciado com o comando cru e a parábola fora de escala. À direita,
-              outra questão do mesmo bloco, produzida depois da regra escrita.
+              À esquerda, outra questão do mesmo bloco, produzida depois da regra escrita. À
+              direita, o enunciado com o comando cru e a parábola fora de escala.
             </figcaption>
           </figure>
         </div>
