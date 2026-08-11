@@ -199,7 +199,48 @@ const pt = {
     inProgressLabel: "Em curso",
     inProgress: ["Inglês técnico", "Lean Seis Sigma Yellow Belt"],
     certsLabel: "Certificações",
-    certs: ["Claude Impressionador · Hashtag Treinamentos · mai/2026"],
+    certsClose: "esc ou clique fora para fechar",
+    certsCloseBtn: "fechar",
+    certsSoon: "Scan do certificado em breve.",
+    certsSoonShort: "em breve",
+    certsZoom: "Ampliar certificado",
+    certsView: "ver certificado",
+    certs: [
+      {
+        area: "Lean Seis Sigma",
+        date: "em curso",
+        name: "Yellow Belt",
+        issuer: "FM2S Educação e Consultoria",
+        hours: "24h",
+        detail: "Acreditado pelo Council for Six Sigma Certification",
+        full: "Lean Seis Sigma Yellow Belt · FM2S",
+        pages: ["certificado"],
+        blurb:
+          "Fundamentos da melhoria de processos: DMAIC, ferramentas da qualidade, mapeamento e análise de causa raiz. É a base metodológica que aparece nos dois estudos de caso do MAT-IA: a lente de inspeção e retrabalho vem daqui.",
+        rows: [
+          { label: "Carga", value: "24 horas-aula" },
+          { label: "Acreditação", value: "Council for Six Sigma Certification" },
+          { label: "Aplicação", value: "Estudos de caso 001 e 002 do MAT-IA" },
+        ],
+      },
+      {
+        area: "IA aplicada",
+        date: "mai/2026",
+        name: "Claude Impressionador",
+        issuer: "Hashtag Treinamentos",
+        hours: "24h",
+        detail: "Ecossistema Claude: Cowork, Claude Code e Excel",
+        full: "Claude Impressionador · Hashtag Treinamentos",
+        pages: ["certificado", "módulos"],
+        blurb:
+          "Formação focada no ecossistema completo do Claude, de prompt engineering e projetos a Claude Code e integração com Excel. Aplicação prática voltada à automação de análise de dados e otimização de fluxos de trabalho em Engenharia de Produção.",
+        rows: [
+          { label: "Curso", value: "24 horas · 163 aulas · 100% EAD" },
+          { label: "Certificado", value: "Emitido em 03/05/2026" },
+          { label: "Aplicação", value: "Autoria assistida das questões do MAT-IA" },
+        ],
+      },
+    ],
     columns: [
       {
         kicker: ["Engenharia de", "Produção"],
@@ -461,7 +502,48 @@ const en: typeof pt = {
     inProgressLabel: "In progress",
     inProgress: ["Technical English", "Lean Six Sigma Yellow Belt"],
     certsLabel: "Certifications",
-    certs: ["Claude Impressionador · Hashtag Treinamentos · may/2026"],
+    certsClose: "esc or click outside to close",
+    certsCloseBtn: "close",
+    certsSoon: "Certificate scan coming soon.",
+    certsSoonShort: "coming soon",
+    certsZoom: "Enlarge certificate",
+    certsView: "view certificate",
+    certs: [
+      {
+        area: "Lean Six Sigma",
+        date: "in progress",
+        name: "Yellow Belt",
+        issuer: "FM2S Educação e Consultoria",
+        hours: "24h",
+        detail: "Accredited by the Council for Six Sigma Certification",
+        full: "Lean Six Sigma Yellow Belt · FM2S",
+        pages: ["certificate"],
+        blurb:
+          "Process improvement fundamentals: DMAIC, quality tools, mapping and root cause analysis. It is the methodological base behind both MAT-IA case studies: the inspection and rework lens comes from here.",
+        rows: [
+          { label: "Workload", value: "24 class hours" },
+          { label: "Accreditation", value: "Council for Six Sigma Certification" },
+          { label: "Applied in", value: "MAT-IA case studies 001 and 002" },
+        ],
+      },
+      {
+        area: "Applied AI",
+        date: "may/2026",
+        name: "Claude Impressionador",
+        issuer: "Hashtag Treinamentos",
+        hours: "24h",
+        detail: "Claude ecosystem: Cowork, Claude Code and Excel",
+        full: "Claude Impressionador · Hashtag Treinamentos",
+        pages: ["certificate", "modules"],
+        blurb:
+          "Training focused on the full Claude ecosystem, from prompt engineering and projects to Claude Code and Excel integration. Practical application aimed at automating data analysis and streamlining Production Engineering workflows.",
+        rows: [
+          { label: "Course", value: "24 hours · 163 lessons · fully online" },
+          { label: "Certificate", value: "Issued 2026-05-03" },
+          { label: "Applied in", value: "Assisted authoring of MAT-IA questions" },
+        ],
+      },
+    ],
     columns: [
       {
         kicker: ["Production", "Engineering"],

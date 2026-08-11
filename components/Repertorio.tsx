@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { Dict } from "@/app/i18n";
 import { BRAND_ICONS } from "./brand-icons";
+import Certificacoes from "./Certificacoes";
 
 type Cat = "eng" | "tec";
 type Filter = "all" | Cat;
@@ -150,15 +151,7 @@ export default function Repertorio({ t }: { t: Dict["repertoire"] }) {
         ))}
       </div>
 
-      {/* concluidas: tag preenchida separa do que ainda esta em curso */}
-      <div className="rep-progress rep-certs">
-        <span className="rep-progress-label">{t.certsLabel}</span>
-        {t.certs.map((x, i) => (
-          <span key={i} className="tag tag-accent">
-            {x}
-          </span>
-        ))}
-      </div>
+      <Certificacoes t={t} />
     </div>
   );
 }
