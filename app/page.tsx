@@ -146,7 +146,14 @@ export default function Home() {
                 EN
               </button>
             </div>
-            <CvButton label={t.cv.label} title={t.cv.title} download={t.cv.download} />
+            <CvButton
+              lang={lang}
+              label={t.cv.label}
+              title={t.cv.title}
+              download={t.cv.download}
+              ptLabel={t.cv.ptLabel}
+              enLabel={t.cv.enLabel}
+            />
           </div>
           <button
             id="navToggle"

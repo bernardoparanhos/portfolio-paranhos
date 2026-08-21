@@ -434,10 +434,52 @@ a:focus-visible,
   padding: 15px 18px;
   border-bottom: 1px solid var(--n200);
 }
+.cv-card-headline {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  min-width: 0;
+}
 .cv-card-title {
   font-family: var(--font-heading), serif;
   font-size: 20px;
   color: var(--text);
+}
+/* abas PT/EN: troca a versão do PDF em vista sem fechar o modal */
+.cv-lang-tabs {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--n100);
+  border: 1px solid var(--n200);
+}
+.cv-lang-tab {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklab, var(--text) 60%, transparent);
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 5px 11px;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.cv-lang-tab:hover {
+  color: var(--text);
+}
+.cv-lang-tab.ativa {
+  color: #2a1c10;
+  background: var(--accent);
+}
+.cv-lang-tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 .cv-card-actions {
   display: flex;
@@ -495,6 +537,17 @@ a:focus-visible,
   }
   .cv-card {
     height: 92vh;
+  }
+  .cv-card-head {
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .cv-card-headline {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+  .cv-card-actions {
+    margin-left: auto;
   }
   .cv-download {
     padding: 8px 13px;

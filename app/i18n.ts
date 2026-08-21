@@ -306,6 +306,8 @@ const pt = {
     label: "CV",
     title: "Currículo",
     download: "Baixar PDF",
+    ptLabel: "Português",
+    enLabel: "English",
   },
 };
 
@@ -609,6 +611,8 @@ const en: typeof pt = {
     label: "CV",
     title: "Résumé",
     download: "Download PDF",
+    ptLabel: "Português",
+    enLabel: "English",
   },
 };
 

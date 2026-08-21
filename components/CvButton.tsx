@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-const CV_PATH = "/cv-bernardo-paranhos.pdf";
+const CV_FILES = {
+  pt: "/cv-bernardo-paranhos-pt.pdf",
+  en: "/cv-bernardo-paranhos-en.pdf",
+} as const;
+type CvLang = keyof typeof CV_FILES;
 
 function DownloadIcon({ size = 13 }: { size?: number }) {
   return (
@@ -26,19 +30,28 @@ function DownloadIcon({ size = 13 }: { size?: number }) {
 }
 
 // Botão de CV: abre um modal centralizado que pré-visualiza o PDF (sem baixar),
-// com um botão premium pra salvar. Modal via portal (acima da nav), fecha no
-// ×, clique fora ou Esc, trava o scroll do body e gerencia o foco.
+// com abas PT/EN pra trocar de versão sem fechar e um botão premium pra salvar
+// a versão em vista. Modal via portal (acima da nav), fecha no ×, clique fora
+// ou Esc, trava o scroll do body e gerencia o foco. Abre sempre na versão do
+// idioma atual do site, mas o usuário pode ver a outra sem trocar o idioma dele.
 export default function CvButton({
+  lang,
   label,
   title,
   download,
+  ptLabel,
+  enLabel,
 }: {
+  lang: CvLang;
   label: string;
   title: string;
   download: string;
+  ptLabel: string;
+  enLabel: string;
 }) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [view, setView] = useState<CvLang>(lang);
   const closeRef = useRef<HTMLButtonElement>(null);
 
   // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -59,9 +72,14 @@ export default function CvButton({
     };
   }, [open]);
 
+  const abrir = () => {
+    setView(lang);
+    setOpen(true);
+  };
+
   return (
     <>
-      <button type="button" className="cv-pill" aria-label={title} onClick={() => setOpen(true)}>
+      <button type="button" className="cv-pill" aria-label={title} onClick={abrir}>
         <DownloadIcon />
         <span className="cv-pill-label">{label}</span>
       </button>
@@ -78,9 +96,37 @@ export default function CvButton({
           >
             <div className="cv-card" onClick={(e) => e.stopPropagation()}>
               <div className="cv-card-head">
-                <span className="cv-card-title">{title}</span>
+                <div className="cv-card-headline">
+                  <span className="cv-card-title">{title}</span>
+                  <div className="cv-lang-tabs" role="tablist" aria-label={title}>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={view === "pt"}
+                      className={`cv-lang-tab${view === "pt" ? " ativa" : ""}`}
+                      onClick={() => setView("pt")}
+                    >
+                      PT
+                    </button>
+                    <button
+                      type="button"
+                      role="tab"
+                      aria-selected={view === "en"}
+                      className={`cv-lang-tab${view === "en" ? " ativa" : ""}`}
+                      onClick={() => setView("en")}
+                    >
+                      EN
+                    </button>
+                  </div>
+                </div>
                 <div className="cv-card-actions">
-                  <a href={CV_PATH} download className="cv-download">
+                  <a
+                    key={view}
+                    href={CV_FILES[view]}
+                    download
+                    className="cv-download"
+                    aria-label={`${download} — ${view === "pt" ? ptLabel : enLabel}`}
+                  >
                     <DownloadIcon size={14} />
                     {download}
                   </a>
@@ -95,7 +141,12 @@ export default function CvButton({
                   </button>
                 </div>
               </div>
-              <iframe className="cv-frame" src={`${CV_PATH}#toolbar=0&navpanes=0`} title={title} />
+              <iframe
+                key={view}
+                className="cv-frame"
+                src={`${CV_FILES[view]}#toolbar=0&navpanes=0`}
+                title={`${title} — ${view === "pt" ? ptLabel : enLabel}`}
+              />
             </div>
           </div>,
           document.body,
