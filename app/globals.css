@@ -2020,9 +2020,11 @@ a:focus-visible,
   color: var(--n500);
   margin-bottom: 16px;
 }
+/* uma faixa por credencial: a trilha é larga demais pra dividir a linha com
+   outro cartão, e o de baixo acompanha a mesma largura */
 .certs-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 .cert-card {
@@ -2078,10 +2080,25 @@ a:focus-visible,
 }
 .cert-foot {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   gap: 16px;
-  margin-top: 16px;
+  margin-top: 14px;
+}
+/* Faixa da credencial: a data segue na borda de cima, o texto fica numa coluna
+   e o scan ocupa a outra, centrado — sem o vão que sobrava quando ele descia
+   pro pé do cartão. */
+.cert-credencial {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  column-gap: 34px;
+  align-items: center;
+}
+.cert-credencial .cert-top {
+  grid-column: 1 / -1;
+  margin-bottom: 10px;
+}
+.cert-corpo {
+  min-width: 0;
 }
 .cert-link {
   font-family: var(--font-mono), monospace;
@@ -2101,7 +2118,7 @@ a:focus-visible,
 .cert-thumb {
   display: block;
   flex: none;
-  width: 92px;
+  width: 146px;
   aspect-ratio: 645 / 470;
   background: #f5ead8;
   border-radius: 6px;
@@ -2342,6 +2359,14 @@ a:focus-visible,
   .certs-grid {
     grid-template-columns: 1fr;
   }
+  /* sem largura pra duas colunas: o scan volta pra baixo do texto, menor */
+  .cert-credencial {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 18px;
+  }
+  .cert-thumb {
+    width: 132px;
+  }
   .cert-lb {
     padding: 16px;
     align-items: flex-start;
@@ -2359,6 +2384,634 @@ a:focus-visible,
   .cert-lb-row {
     grid-template-columns: 1fr;
     gap: 4px;
+  }
+}
+
+/* ═══ Trilha de formação em IA — cartão largo + modal ═══
+   Mesma regra dos outros cartões de credencial: a superfície é escura nos dois
+   temas. Os tokens abaixo (prefixo --tr-) ficam no escopo do cartão e do modal
+   e não vazam pra página. O fundo atrás de qualquer distintivo é sempre o bege
+   --tr-papel: o PNG tem cor própria e precisa do mesmo papel nos dois temas. */
+.trilha-card,
+.trilha-lb {
+  --tr-card: #2a2117;
+  --tr-card2: #241c13;
+  --tr-border: #3d3121;
+  --tr-border2: #5a4930;
+  --tr-ink: #f5ead8;
+  --tr-sub: #b9ab97;
+  --tr-faint: #8a7a63;
+  --tr-acc: #d9884c;
+  --tr-accH: #e8a273;
+  --tr-onAcc: #241c13;
+  --tr-glow: rgba(217, 136, 76, 0.4);
+  --tr-glowSoft: rgba(217, 136, 76, 0.18);
+  --tr-overlay: rgba(16, 12, 8, 0.78);
+  --tr-papel: #f5ead8;
+}
+
+@keyframes tr-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+@keyframes tr-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes tr-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes tr-popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── cartão largo ── */
+.trilha-card {
+  position: relative;
+  overflow: hidden;
+}
+/* O halo nasce fora do canto superior direito, mas como gradiente de uma caixa
+   que cabe no cartão: um elemento estourando a borda inflaria o scrollWidth. */
+.trilha-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 120px at calc(100% - 60px) 40px,
+    var(--tr-glowSoft),
+    transparent 70%
+  );
+  pointer-events: none;
+}
+.trilha-contador {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  color: var(--tr-sub);
+  white-space: nowrap;
+}
+.trilha-ponto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tr-acc);
+  animation: tr-bob 2.4s ease-in-out infinite;
+}
+
+/* ── palco: lista de módulos + módulo em foco ── */
+.trilha-palco {
+  display: grid;
+  grid-template-columns: 218px minmax(0, 1fr);
+  margin-top: 22px;
+  background: var(--tr-card2);
+  border: 1px solid var(--tr-border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.trilha-abas {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--tr-border);
+}
+.trilha-aba {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 12px 16px;
+  text-align: left;
+  background: none;
+  /* a borda existe desde sempre, transparente: acender não desloca o texto */
+  border: 1px solid transparent;
+  border-left-width: 2px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+.trilha-aba:hover {
+  background: rgba(217, 136, 76, 0.06);
+}
+.trilha-aba.ativa {
+  background: var(--tr-card);
+  border-color: var(--tr-acc);
+}
+.trilha-aba-num {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  color: var(--tr-faint);
+}
+.trilha-aba.feito .trilha-aba-num {
+  color: var(--tr-acc);
+}
+.trilha-aba-nome {
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--tr-sub);
+}
+.trilha-aba.feito .trilha-aba-nome,
+.trilha-aba.ativa .trilha-aba-nome {
+  color: var(--tr-ink);
+}
+.trilha-painel {
+  display: grid;
+  grid-template-columns: minmax(0, 290px) minmax(0, 1fr);
+  gap: 30px;
+  align-items: center;
+  padding: 26px 30px;
+}
+.trilha-palco-badge {
+  display: grid;
+  place-items: center;
+  gap: 12px;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px -18px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+.trilha-palco-badge:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 24px 50px -18px rgba(0, 0, 0, 0.65),
+    0 0 0 3px var(--tr-glowSoft);
+}
+.trilha-palco-badge img {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+}
+.trilha-palco-badge.vazio {
+  aspect-ratio: 1516 / 998;
+  width: 100%;
+  border: 1px dashed var(--tr-border2);
+  box-shadow: none;
+}
+.trilha-palco-badge.vazio:hover {
+  border-color: var(--tr-acc);
+  box-shadow: none;
+}
+.trilha-palco-num {
+  font-family: var(--font-heading), serif;
+  font-size: 40px;
+  line-height: 1;
+  color: var(--tr-faint);
+  opacity: 0.45;
+}
+.trilha-palco-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.trilha-palco-titulo {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.15;
+  color: var(--tr-ink);
+  margin-top: 8px;
+}
+.trilha-palco-resumo {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--tr-sub);
+  margin-top: 12px;
+}
+
+/* ── navegação entre módulos ── */
+.trilha-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+.trilha-seta {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: none;
+  border: 1px solid var(--tr-border2);
+  color: var(--tr-sub);
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    color 0.25s;
+}
+.trilha-seta:hover {
+  border-color: var(--tr-acc);
+  color: var(--tr-acc);
+}
+.trilha-nav-cont {
+  font-family: var(--font-mono), monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--tr-faint);
+  white-space: nowrap;
+}
+.trilha-barras {
+  display: flex;
+  gap: 6px;
+  /* auto dos dois lados: fica centralizado entre os vizinhos do flex */
+  margin: 0 auto;
+}
+.trilha-barra {
+  width: 26px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--tr-border);
+  transition:
+    background 0.25s,
+    width 0.25s;
+}
+.trilha-barra.feita {
+  background: var(--tr-border2);
+}
+.trilha-barra.atual {
+  width: 34px;
+  background: var(--tr-acc);
+}
+.trilha-tag {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tr-faint);
+  white-space: nowrap;
+}
+
+/* ── botões ── */
+.trilha-verificar {
+  display: inline-block;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  background: var(--tr-acc);
+  color: var(--tr-onAcc);
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.trilha-verificar:hover {
+  background: var(--tr-accH);
+  color: var(--tr-onAcc);
+}
+.trilha-externo {
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--tr-acc);
+  transition: color 0.25s;
+}
+.trilha-externo:hover {
+  color: var(--tr-accH);
+}
+.trilha-no-selo {
+  font-family: var(--font-mono), monospace;
+  font-size: 8.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tr-faint);
+  border: 1px dashed var(--tr-border2);
+  border-radius: 999px;
+  padding: 3px 9px;
+}
+
+/* ── modal ── */
+.trilha-lb {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  background: var(--tr-overlay);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  animation: tr-fadeIn 0.3s ease;
+  cursor: zoom-out;
+}
+.trilha-lb-panel {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  background: var(--tr-card);
+  border: 1px solid var(--tr-border);
+  border-radius: 22px;
+  padding: 38px;
+  box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.7);
+  cursor: default;
+  animation: tr-popIn 0.45s cubic-bezier(0.2, 0.9, 0.25, 1.05) both;
+}
+/* a página inteira já rola sem barra visível; o overlay e o painel seguem a
+   mesma regra pra não abrir uma barra dentro do cartão */
+.trilha-lb,
+.trilha-lb-panel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.trilha-lb::-webkit-scrollbar,
+.trilha-lb-panel::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+.trilha-x {
+  position: absolute;
+  top: 26px;
+  right: 26px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: none;
+  border: 1px solid var(--tr-border2);
+  color: var(--tr-sub);
+  font-size: 13px;
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    color 0.25s;
+}
+.trilha-x:hover {
+  border-color: var(--tr-acc);
+  color: var(--tr-acc);
+}
+.trilha-lb-kicker {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--tr-acc);
+}
+.trilha-lb-titulo {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 27px;
+  line-height: 1.15;
+  color: var(--tr-ink);
+  margin-top: 8px;
+}
+.trilha-progresso {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+.trilha-progresso .trilha-barras {
+  margin: 0;
+}
+.trilha-progresso-txt {
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--tr-sub);
+}
+.trilha-lb-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--tr-border);
+}
+.trilha-lb-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.trilha-lb-hint {
+  font-family: var(--font-mono), monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  color: var(--tr-faint);
+}
+
+/* ── ficha de um módulo (dentro do modal) ── */
+.trilha-ficha {
+  animation: tr-fadeUp 0.35s ease both;
+}
+.trilha-ficha-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 30px;
+  margin-top: 24px;
+}
+.trilha-ficha-esq {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  perspective: 1000px;
+}
+.trilha-scan {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.55);
+}
+.trilha-scan img {
+  width: 100%;
+  height: auto;
+}
+.trilha-scan-brilho {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.trilha-scan-dica {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-align: center;
+  color: var(--tr-faint);
+}
+.trilha-scan-ph {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  aspect-ratio: 1516 / 998;
+  border: 2px dashed var(--tr-border2);
+  border-radius: 16px;
+}
+.trilha-scan-num {
+  font-family: var(--font-heading), serif;
+  font-size: 44px;
+  color: var(--tr-faint);
+  opacity: 0.45;
+}
+.trilha-ficha-dir {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.trilha-ficha-kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tr-acc);
+}
+.trilha-ficha-titulo {
+  font-family: var(--font-heading), serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.15;
+  color: var(--tr-ink);
+  margin-top: 8px;
+}
+.trilha-ficha-sub {
+  font-size: 13px;
+  color: var(--tr-sub);
+  margin-top: 6px;
+}
+.trilha-bloco {
+  align-self: stretch;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--tr-border);
+}
+.trilha-bloco-label {
+  display: block;
+  font-family: var(--font-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tr-faint);
+}
+.trilha-bloco-corpo {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--tr-sub);
+  margin-top: 8px;
+}
+.trilha-ficha-acao {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 22px;
+}
+
+/* ── foco visível em tudo que é clicável ── */
+.trilha-aba:focus-visible,
+.trilha-seta:focus-visible,
+.trilha-verificar:focus-visible,
+.trilha-externo:focus-visible,
+.trilha-palco-badge:focus-visible,
+.trilha-x:focus-visible {
+  outline: 2px solid var(--tr-acc);
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  /* o distintivo passa pra cima do texto em vez de espremer as duas colunas */
+  .trilha-painel {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    padding: 22px;
+  }
+  .trilha-palco-badge {
+    max-width: 320px;
+  }
+}
+@media (max-width: 680px) {
+  /* a lista de módulos vira uma fila rolável no topo do palco */
+  .trilha-palco {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .trilha-abas {
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-right: 0;
+    border-bottom: 1px solid var(--tr-border);
+    padding: 8px;
+    gap: 6px;
+  }
+  .trilha-abas::-webkit-scrollbar {
+    display: none;
+  }
+  .trilha-aba {
+    flex: none;
+    width: 150px;
+  }
+  .trilha-nav {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .trilha-barras {
+    order: 3;
+    width: 100%;
+    margin: 0;
+    justify-content: center;
+  }
+  .trilha-tag {
+    margin-left: auto;
+  }
+  .trilha-lb {
+    align-items: flex-start;
+    padding: 12px;
+  }
+  .trilha-lb-panel {
+    padding: 26px 18px;
+    max-height: calc(100vh - 24px);
+  }
+  .trilha-lb-titulo {
+    font-size: 23px;
+  }
+  .trilha-x {
+    top: 16px;
+    right: 16px;
+  }
+  .trilha-lb-foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
 }
 
@@ -2841,6 +3494,10 @@ a:focus-visible,
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  /* a margem negativa devolve o recuo: o alvo cresce pro dedo sem que o texto
+     saia do lugar na barra */
+  padding: 9px 10px;
+  margin: -9px -10px;
   font-family: var(--font-mono), monospace;
   font-size: 11.5px;
   letter-spacing: 0.1em;
@@ -3521,6 +4178,36 @@ a:focus-visible,
     width: 130px;
     height: 130px;
     right: 20px;
+  }
+}
+/* Telas estreitas: o que era linha larga passa a caber em duas colunas ou a
+   quebrar. Sem isso o conteúdo sai pela lateral e o `overflow-x: clip` do
+   .case corta em silêncio, em vez de mostrar. */
+@media (max-width: 620px) {
+  .case-bar-inner,
+  .case-open-inner,
+  .case-wrap {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  /* as quatro células da ficha não cabem lado a lado: viram 2 × 2 */
+  .case-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: auto;
+    gap: 16px 20px;
+  }
+  .case-before,
+  .case-after {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+  /* a coluna da operação encolhe em vez de empurrar os números pra fora */
+  .case-after-table {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 0 12px;
+  }
+  .case-before-fig {
+    font-size: 44px;
   }
 }
 
@@ -4528,6 +5215,48 @@ a:focus-visible,
   }
   .c2-rail-r {
     white-space: normal;
+  }
+  /* O log é um terminal: em tela estreita a linha quebra em vez de sair pela
+     lateral — o .c2 tem `overflow-x: clip` e cortaria o comando no meio. */
+  .c2-log,
+  .c2-log-tl {
+    padding: 20px 16px;
+    font-size: 11.5px;
+    line-height: 1.8;
+  }
+  .c2-log-comment,
+  .c2-log-cmd,
+  .c2-log-cmd span {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .c2-log-cmd {
+    flex-wrap: wrap;
+    gap: 2px 14px;
+  }
+  .c2-log-rows {
+    margin-left: 0;
+  }
+  /* a tentativa encolhe; o ✓/✗ continua ancorado na direita da linha */
+  .c2-tl-tent {
+    min-width: 0;
+    flex: 1;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .c2-tl-t,
+  .c2-tl-res {
+    flex: none;
+  }
+  .c2-tl-res {
+    padding-left: 10px;
+  }
+  .c2-code {
+    width: auto;
+    padding: 14px 16px;
+    font-size: 11.5px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
   }
 }
 @media (max-width: 520px) {

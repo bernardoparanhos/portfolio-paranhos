@@ -6,13 +6,13 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import type { Dict } from "@/app/i18n";
+import TrilhaCard from "./certifications/TrilhaCard";
 
 // Scans de cada credencial e sigla do emissor pro placeholder — alinhados por
 // indice com t.certs (e `srcs` alinhado com t.certs[i].pages, que traz o rotulo
 // de cada folha). `srcs: []` = certificado ainda nao entregue: entra o
 // placeholder tracejado, na miniatura e no lightbox.
 const CERT_META: { srcs: string[]; sigla: string; tilt: string }[] = [
-  { srcs: [], sigla: "FM2S", tilt: "cert-thumb-a" },
   {
     srcs: ["/cert-claude.jpg", "/cert-claude-modulos.jpg"],
     sigla: "HASHTAG",
@@ -58,46 +58,55 @@ export default function Certificacoes({ t }: { t: Dict["repertoire"] }) {
       <span className="certs-kicker">{t.certsLabel}</span>
 
       <div className="certs-grid">
+        {/* a trilha da Anthropic ocupa o lugar do primeiro cartao da grade */}
+        <TrilhaCard t={t.trilha} />
+
         {t.certs.map((c, i) => {
           const meta = CERT_META[i];
           // sem scan = credencial ainda em curso: o cartao existe, mas não abre
           const pendente = meta.srcs.length === 0;
           return (
-            <article key={c.name} className="cert-card">
+            // a credencial é uma faixa: texto à esquerda, scan à direita, e o
+            // cartão só ocupa a altura do que tem dentro
+            <article key={c.name} className="cert-card cert-credencial">
               <div className="cert-top">
                 <span className="cert-area">{c.area}</span>
                 <span className="cert-date">{c.date}</span>
               </div>
-              <h3 className="cert-name">{c.name}</h3>
-              <div className="cert-issuer">
-                {c.issuer}
-                {c.hours && ` · ${c.hours}`}
-              </div>
-              <div className="cert-detail">{c.detail}</div>
 
-              <div className="cert-foot">
-                {pendente ? (
-                  <span className="cert-soon">{t.certsSoonShort}</span>
-                ) : (
-                  <button type="button" className="cert-link" onClick={() => abrir(i)}>
-                    {t.certsView} ↗
-                  </button>
-                )}
-                <span
-                  role={pendente ? undefined : "button"}
-                  tabIndex={pendente ? undefined : 0}
-                  aria-label={pendente ? undefined : `${t.certsZoom} ${c.full}`}
-                  className={`cert-thumb ${meta.tilt}${pendente ? " aguardando" : ""}`}
-                  onClick={pendente ? undefined : () => abrir(i)}
-                  onKeyDown={pendente ? undefined : (e) => teclaAbre(e, i)}
-                >
+              <div className="cert-corpo">
+                <h3 className="cert-name">{c.name}</h3>
+                <div className="cert-issuer">
+                  {c.issuer}
+                  {c.hours && ` · ${c.hours}`}
+                </div>
+                <div className="cert-detail">{c.detail}</div>
+
+                <div className="cert-foot">
                   {pendente ? (
-                    <span className="cert-thumb-ph">{meta.sigla}</span>
+                    <span className="cert-soon">{t.certsSoonShort}</span>
                   ) : (
-                    <img src={meta.srcs[0]} alt="" loading="lazy" decoding="async" />
+                    <button type="button" className="cert-link" onClick={() => abrir(i)}>
+                      {t.certsView}
+                    </button>
                   )}
-                </span>
+                </div>
               </div>
+
+              <span
+                role={pendente ? undefined : "button"}
+                tabIndex={pendente ? undefined : 0}
+                aria-label={pendente ? undefined : `${t.certsZoom} ${c.full}`}
+                className={`cert-thumb ${meta.tilt}${pendente ? " aguardando" : ""}`}
+                onClick={pendente ? undefined : () => abrir(i)}
+                onKeyDown={pendente ? undefined : (e) => teclaAbre(e, i)}
+              >
+                {pendente ? (
+                  <span className="cert-thumb-ph">{meta.sigla}</span>
+                ) : (
+                  <img src={meta.srcs[0]} alt="" loading="lazy" decoding="async" />
+                )}
+              </span>
             </article>
           );
         })}

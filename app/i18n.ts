@@ -205,24 +205,116 @@ const pt = {
     certsSoonShort: "em breve",
     certsZoom: "Ampliar certificado",
     certsView: "ver certificado",
+    // Trilha de formação em IA — cartão de faixa larga + modal
+    // (components/certifications). `nos` é alinhado por indice com NOS de
+    // trilha-data.ts: `resumo` é a chamada curta que aparece no cartão, os
+    // demais campos são os blocos da ficha. Um módulo concluído fala no
+    // passado (achei/estudei/aplicar); um em construção fala no futuro
+    // (estudarei/porque) e deixa os outros vazios.
+    trilha: {
+      kicker: "Trilha de formação · IA",
+      titulo: "Formação em IA · Anthropic",
+      sub: "Claude Academy · 5 módulos oficiais, do Model Context Protocol à construção com a API do Claude",
+      progresso: "{feitos} de {total} concluídos",
+      tag: "Interativo",
+      emissor: "Claude Academy · Anthropic",
+      modalTitulo: "Trilha de Formação em IA",
+      rodape: "Trilha · Claude Academy",
+      fechar: "esc ou clique fora para fechar",
+      fecharBtn: "Fechar",
+      anterior: "Módulo anterior",
+      proximo: "Próximo módulo",
+      verModulo: "ver o módulo",
+      verificar: "ver e verificar",
+      concluido: "concluído",
+      emBreve: "em breve",
+      emConstrucao: "em construção",
+      passoFinal: "em construção · passo final",
+      emObras: "Módulo em construção",
+      modulo: "Módulo",
+      previsto: "previsto",
+      tiltDica: "passe o mouse — o distintivo reage",
+      labelAchei: "O que achei do módulo",
+      labelEstudei: "O que estudei",
+      labelAplicar: "Como pretendo aplicar",
+      labelEstudarei: "O que vou estudar",
+      labelPorque: "Por que escolhi este passo",
+      nos: [
+        {
+          titulo: "Introduction to Model Context Protocol",
+          curto: "Intro ao Model Context Protocol",
+          data: "set/2026",
+          resumo:
+            "Fundamentos do protocolo que conecta modelos a ferramentas, dados e sistemas externos — hosts, clients, servers e como expor ações com segurança.",
+          achei:
+            "Módulo direto e bem construído, com mão na massa no SDK Python. A arquitetura do MCP fica clara já nos primeiros exemplos, sem enrolação.",
+          estudei:
+            "O papel de hosts, clients e servers, e os três pilares do protocolo: tools (ações), resources (dados) e prompts (instruções prontas). Como expor dados e ações de forma padronizada e segura para o modelo, usando decorators e o inspector para testar.",
+          aplicar:
+            "Conectar o MAT-IA a fontes de dados via servidores MCP, padronizando as integrações em vez de reescrever código a cada ligação nova. Menos retrabalho, mais organização.",
+          estudarei: "",
+          porque: "",
+        },
+        {
+          titulo: "Building effective human-agent teams",
+          curto: "Human-agent teams",
+          data: "set/2026",
+          resumo:
+            "Padrões de colaboração humano-agente: delegar com contexto e critérios claros, memória compartilhada e confiança liberada aos poucos.",
+          achei:
+            "Mudou minha forma de enxergar delegação: tratar o agente como parte da equipe, não como ferramenta isolada. Muito visual e prático.",
+          estudei:
+            "A diferença entre IA individual e multiplayer, e as três capacidades de um agente de time: identidade própria, memória compartilhada e contexto compartilhado. Além dos princípios de um time saudável: north star escrita, papéis claros e liberação gradual de confiança.",
+          aplicar:
+            "Estruturar os fluxos do MAT-IA e dos processos da AntiFrágil com contexto compartilhado, tirando decisões de conversas soltas e registrando onde a IA consiga ler. É reduzir silo e retrabalho, com lente de engenharia de produção.",
+          estudarei: "",
+          porque: "",
+        },
+        {
+          titulo: "AI capabilities and limitations",
+          curto: "AI capabilities & limitations",
+          data: "",
+          resumo:
+            "O que vem por aí: o que os modelos realmente fazem e não fazem — conhecimento, memória de trabalho, contexto e seus limites.",
+          achei: "",
+          estudei: "",
+          aplicar: "",
+          estudarei:
+            "O que os modelos por trás dessas ferramentas realmente fazem e não fazem: previsão de próximo token, conhecimento, memória de trabalho, contexto e seus limites.",
+          porque:
+            "Pra falar de IA com propriedade, sabendo onde ela ajuda e onde falha. É a base que separa quem usa IA de quem só aperta botão.",
+        },
+        {
+          titulo: "AI Fluency: Framework and Foundations",
+          curto: "AI Fluency",
+          data: "",
+          resumo:
+            "O que vem por aí: um framework completo de fluência em IA — delegação, descrição, discernimento e diligência no uso diário.",
+          achei: "",
+          estudei: "",
+          aplicar: "",
+          estudarei:
+            "O framework 4D de colaboração com IA: Delegação, Descrição, Discernimento e Diligência, além de práticas de uso ético e seguro.",
+          porque:
+            "Pra transformar o uso de IA num método, não em tentativa e erro. Vira vocabulário e critério que aplico em todo projeto, do MAT-IA ao estágio.",
+        },
+        {
+          titulo: "Building with the Claude API",
+          curto: "Building with the Claude API",
+          data: "",
+          resumo:
+            "O passo final: desenvolvimento com a API do Claude de ponta a ponta — chamadas, ferramentas e integração em produto real.",
+          achei: "",
+          estudei: "",
+          aplicar: "",
+          estudarei:
+            "O desenvolvimento com a API do Claude de ponta a ponta: chamadas, ferramentas, boas práticas e integração em produto real.",
+          porque:
+            "É o passo mais robusto da trilha e o que mais aproxima estudo de aplicação. Fecha o ciclo entre o que aprendo aqui e o que construo no MAT-IA e no Aulivo.",
+        },
+      ],
+    },
     certs: [
-      {
-        area: "Lean Seis Sigma",
-        date: "em curso",
-        name: "Yellow Belt",
-        issuer: "FM2S Educação e Consultoria",
-        hours: "24h",
-        detail: "Acreditado pelo Council for Six Sigma Certification",
-        full: "Lean Seis Sigma Yellow Belt · FM2S",
-        pages: ["certificado"],
-        blurb:
-          "Fundamentos da melhoria de processos: DMAIC, ferramentas da qualidade, mapeamento e análise de causa raiz. É a base metodológica que aparece nos dois estudos de caso do MAT-IA: a lente de inspeção e retrabalho vem daqui.",
-        rows: [
-          { label: "Carga", value: "24 horas-aula" },
-          { label: "Acreditação", value: "Council for Six Sigma Certification" },
-          { label: "Aplicação", value: "Estudos de caso 001 e 002 do MAT-IA" },
-        ],
-      },
       {
         area: "IA aplicada",
         date: "mai/2026",
@@ -510,24 +602,110 @@ const en: typeof pt = {
     certsSoonShort: "coming soon",
     certsZoom: "Enlarge certificate",
     certsView: "view certificate",
+    trilha: {
+      kicker: "Learning path · AI",
+      titulo: "AI training · Anthropic",
+      sub: "Claude Academy · 5 official modules, from the Model Context Protocol to building with the Claude API",
+      progresso: "{feitos} of {total} completed",
+      tag: "Interactive",
+      emissor: "Claude Academy · Anthropic",
+      modalTitulo: "AI Learning Path",
+      rodape: "Learning path · Claude Academy",
+      fechar: "esc or click outside to close",
+      fecharBtn: "Close",
+      anterior: "Previous module",
+      proximo: "Next module",
+      verModulo: "open the module",
+      verificar: "view and verify",
+      concluido: "completed",
+      emBreve: "coming soon",
+      emConstrucao: "in progress",
+      passoFinal: "in progress · final step",
+      emObras: "Module in progress",
+      modulo: "Module",
+      previsto: "planned",
+      tiltDica: "hover — the badge reacts",
+      labelAchei: "What I thought of the module",
+      labelEstudei: "What I studied",
+      labelAplicar: "How I plan to apply it",
+      labelEstudarei: "What I will study",
+      labelPorque: "Why I picked this step",
+      nos: [
+        {
+          titulo: "Introduction to Model Context Protocol",
+          curto: "Intro to Model Context Protocol",
+          data: "sep/2026",
+          resumo:
+            "The fundamentals of the protocol that connects models to tools, data and external systems — hosts, clients, servers and how to expose actions safely.",
+          achei:
+            "A straight, well-built module, hands-on with the Python SDK. The MCP architecture is clear from the very first examples, with no padding.",
+          estudei:
+            "The role of hosts, clients and servers, and the protocol's three pillars: tools (actions), resources (data) and prompts (ready-made instructions). How to expose data and actions to the model in a standard, safe way, using decorators and the inspector to test.",
+          aplicar:
+            "Connect MAT-IA to data sources through MCP servers, standardising the integrations instead of rewriting code for every new connection. Less rework, more structure.",
+          estudarei: "",
+          porque: "",
+        },
+        {
+          titulo: "Building effective human-agent teams",
+          curto: "Human-agent teams",
+          data: "sep/2026",
+          resumo:
+            "Human-agent collaboration patterns: delegating with clear context and criteria, shared memory and trust released step by step.",
+          achei:
+            "It changed how I see delegation: treating the agent as part of the team, not as an isolated tool. Very visual and practical.",
+          estudei:
+            "The difference between single-player and multiplayer AI, and the three capabilities of a team agent: its own identity, shared memory and shared context. Plus the principles of a healthy team: a written north star, clear roles and trust released gradually.",
+          aplicar:
+            "Structure the MAT-IA workflows and AntiFrágil's processes around shared context, taking decisions out of scattered conversations and recording them where the AI can read them. Less silo and less rework, through a production engineering lens.",
+          estudarei: "",
+          porque: "",
+        },
+        {
+          titulo: "AI capabilities and limitations",
+          curto: "AI capabilities & limitations",
+          data: "",
+          resumo:
+            "Coming up: what the models really do and do not do — knowledge, working memory, context and their limits.",
+          achei: "",
+          estudei: "",
+          aplicar: "",
+          estudarei:
+            "What the models behind these tools really do and do not do: next-token prediction, knowledge, working memory, context and their limits.",
+          porque:
+            "So I can talk about AI with authority, knowing where it helps and where it fails. That is the base separating someone who uses AI from someone who just presses buttons.",
+        },
+        {
+          titulo: "AI Fluency: Framework and Foundations",
+          curto: "AI Fluency",
+          data: "",
+          resumo:
+            "Coming up: a complete AI fluency framework — delegation, description, discernment and diligence in daily use.",
+          achei: "",
+          estudei: "",
+          aplicar: "",
+          estudarei:
+            "The 4D framework for collaborating with AI: Delegation, Description, Discernment and Diligence, plus ethical and safe use practices.",
+          porque:
+            "To turn AI use into a method rather than trial and error. It becomes vocabulary and criteria I apply to every project, from MAT-IA to the internship.",
+        },
+        {
+          titulo: "Building with the Claude API",
+          curto: "Building with the Claude API",
+          data: "",
+          resumo:
+            "The final step: end-to-end development with the Claude API — calls, tools and integration into a real product.",
+          achei: "",
+          estudei: "",
+          aplicar: "",
+          estudarei:
+            "End-to-end development with the Claude API: calls, tools, best practices and integration into a real product.",
+          porque:
+            "It is the most demanding step of the path and the one that brings study closest to application. It closes the loop between what I learn here and what I build in MAT-IA and Aulivo.",
+        },
+      ],
+    },
     certs: [
-      {
-        area: "Lean Six Sigma",
-        date: "in progress",
-        name: "Yellow Belt",
-        issuer: "FM2S Educação e Consultoria",
-        hours: "24h",
-        detail: "Accredited by the Council for Six Sigma Certification",
-        full: "Lean Six Sigma Yellow Belt · FM2S",
-        pages: ["certificate"],
-        blurb:
-          "Process improvement fundamentals: DMAIC, quality tools, mapping and root cause analysis. It is the methodological base behind both MAT-IA case studies: the inspection and rework lens comes from here.",
-        rows: [
-          { label: "Workload", value: "24 class hours" },
-          { label: "Accreditation", value: "Council for Six Sigma Certification" },
-          { label: "Applied in", value: "MAT-IA case studies 001 and 002" },
-        ],
-      },
       {
         area: "Applied AI",
         date: "may/2026",
