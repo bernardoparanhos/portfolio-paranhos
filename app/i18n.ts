@@ -78,6 +78,13 @@ const pt = {
     tag: "3º período · em andamento",
     btn: "Ver grade curricular",
   },
+  exp0: {
+    date: "Desde Set 2026",
+    role: "Pesquisador do Projeto · Simulador de PCP",
+    org: "Engenharia de Produção · UTFPR MD",
+    desc: "Projeto de pesquisa orientado pelo Prof. Dr. Edson Hermenegildo Pereira Junior para desenvolver um jogo/simulador de processo produtivo para as disciplinas de Gestão da Produção. Na fase atual, modelo o conceito com blocos de montagem e valido a lógica em planilhas antes da construção do jogo. Prototipamos dois produtos em blocos, um robô e um trem a vapor, cada um com lista de materiais própria. Levo a bagagem de gestão de produto do MAT-IA.",
+    tagBom: "Lista de materiais",
+  },
   exp1: {
     date: "Mar – Dez 2026",
     role: "Bolsista de Inovação · Coordenação de Projeto e Produto · MAT-IA",
@@ -476,6 +483,13 @@ const en: typeof pt = {
     meta: "Medianeira Campus · PR  /  2025 to 2030 (expected)",
     tag: "3rd semester · in progress",
     btn: "View curriculum",
+  },
+  exp0: {
+    date: "Since Sep 2026",
+    role: "Project Researcher · PPC Simulator",
+    org: "Production Engineering · UTFPR MD",
+    desc: "Research project supervised by Prof. Dr. Edson Hermenegildo Pereira Junior to develop a production-process game/simulator for the Production Management courses. In the current phase, I model the concept with building blocks and validate the logic in spreadsheets before building the game. We prototyped two block-built products, a robot and a steam train, each with its own bill of materials. I bring along the product-management experience from MAT-IA.",
+    tagBom: "Bill of materials",
   },
   exp1: {
     date: "Mar – Dec 2026",

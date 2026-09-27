@@ -313,10 +313,34 @@ export default function Home() {
           </div>
           <div className="exp-list">
             <div data-reveal className="exp-row">
-              <div className="exp-date">{t.exp1.date}</div>
+              <div className="exp-side">
+                <div className="exp-date">{t.exp0.date}</div>
+                <div className="exp-org">{t.exp0.org}</div>
+                <span
+                  role="img"
+                  aria-label="UTFPR — Universidade Tecnológica Federal do Paraná"
+                  className="exp-logo exp-logo--utfpr"
+                />
+              </div>
+              <div>
+                <h3 className="exp-role">{t.exp0.role}</h3>
+                <p className="exp-desc">{t.exp0.desc}</p>
+                <div className="tag-row">
+                  <span className="tag tag-outline">PCP</span>
+                  <span className="tag tag-outline">{t.exp0.tagBom}</span>
+                  <span className="tag tag-outline">Microsoft Excel</span>
+                  <span className="tag tag-accent2">UTFPR</span>
+                </div>
+              </div>
+            </div>
+            <div data-reveal className="exp-row">
+              <div className="exp-side">
+                <div className="exp-date">{t.exp1.date}</div>
+                <div className="exp-org">{t.exp1.org}</div>
+                <span role="img" aria-label="MAT-IA" className="exp-logo exp-logo--matia" />
+              </div>
               <div>
                 <h3 className="exp-role">{t.exp1.role}</h3>
-                <div className="exp-org">{t.exp1.org}</div>
                 <p className="exp-desc">{t.exp1.desc}</p>
                 <div className="tag-row">
                   <span className="tag tag-outline">React</span>
@@ -329,10 +353,17 @@ export default function Home() {
               </div>
             </div>
             <div data-reveal className="exp-row">
-              <div className="exp-date">{t.exp2.date}</div>
+              <div className="exp-side">
+                <div className="exp-date">{t.exp2.date}</div>
+                <div className="exp-org">{t.exp2.org}</div>
+                <span
+                  role="img"
+                  aria-label="AntiFrágil Consultoria em Gestão e Processos"
+                  className="exp-logo exp-logo--af"
+                />
+              </div>
               <div>
                 <h3 className="exp-role">{t.exp2.role}</h3>
-                <div className="exp-org">{t.exp2.org}</div>
                 <p className="exp-desc exp-desc-tight">{t.exp2.desc}</p>
                 <ul className="exp-bullets">
                   {t.exp2.bullets.map((b, i) => (
@@ -397,7 +428,7 @@ export default function Home() {
                 </div>
                 <div className="matia-ctas">
                   <a
-                    href="https://landing.plataformamati.dev/"
+                    href="https://www.plataformamati.dev/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="matia-cta-primary"

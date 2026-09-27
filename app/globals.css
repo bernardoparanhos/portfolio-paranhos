@@ -995,11 +995,38 @@ a:focus-visible,
   background: var(--surface-soft);
   border-color: var(--n200);
 }
+.exp-side {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding-top: 8px;
+}
 .exp-date {
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;
   color: var(--n500);
-  padding-top: 8px;
+}
+/* logos monocromáticas usadas como máscara: a cor vem do --accent nos 2 temas */
+.exp-logo {
+  display: block;
+  background: var(--accent);
+  -webkit-mask: var(--logo) center / contain no-repeat;
+  mask: var(--logo) center / contain no-repeat;
+}
+.exp-logo--utfpr {
+  width: 88px;
+  aspect-ratio: 2333 / 750;
+  --logo: url(/logos/logo-utfpr.svg);
+}
+.exp-logo--matia {
+  width: 104px;
+  aspect-ratio: 675 / 216;
+  --logo: url(/logos/logo-matia.png);
+}
+.exp-logo--af {
+  width: 64px;
+  aspect-ratio: 404 / 225;
+  --logo: url(/logos/logo-antifragil.png);
 }
 .exp-role {
   font-family: var(--font-heading), serif;
@@ -1011,7 +1038,8 @@ a:focus-visible,
   font-size: 14px;
   font-weight: 600;
   color: var(--accent2-700);
-  margin-top: 8px;
+  line-height: 1.35;
+  margin-top: -8px;
 }
 .exp-desc {
   font-size: 16px;
@@ -3305,13 +3333,19 @@ a:focus-visible,
   .edu-card {
     grid-template-columns: 1fr;
   }
+  /* coluna única: data → empresa → logo empilhados acima do título, com um
+     respiro claro antes dele (em linha, a logo ficava parecendo parte do título) */
   .exp-row {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 28px;
     padding: 28px 24px;
   }
-  .exp-date {
+  .exp-side {
+    gap: 14px;
     padding-top: 0;
+  }
+  .exp-side .exp-logo {
+    margin-top: 4px;
   }
   .portrait-wrap {
     max-width: 340px;
