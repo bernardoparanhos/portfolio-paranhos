@@ -17,10 +17,17 @@ export default function TrilhaCard({ t }: { t: Dict["repertoire"]["trilha"] }) {
   const abas = useRef<HTMLDivElement>(null);
 
   // até 680px a lista de módulos vira uma fila rolável: quem chega pelas setas
-  // precisa ver a aba que acabou de virar a ativa
+  // precisa ver a aba que acabou de virar a ativa. Rola só a lista: o
+  // scrollIntoView rolaria a página junto e puxava o visitante pra cá no load
   useEffect(() => {
-    const aba = abas.current?.querySelectorAll<HTMLElement>("[role=tab]")[ativo];
-    aba?.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+    const lista = abas.current;
+    const aba = lista?.querySelectorAll<HTMLElement>("[role=tab]")[ativo];
+    if (!lista || !aba) return;
+    const l = lista.getBoundingClientRect();
+    const a = aba.getBoundingClientRect();
+    const dx = a.left < l.left ? a.left - l.left : a.right > l.right ? a.right - l.right : 0;
+    const dy = a.top < l.top ? a.top - l.top : a.bottom > l.bottom ? a.bottom - l.bottom : 0;
+    if (dx || dy) lista.scrollBy({ left: dx, top: dy, behavior: "smooth" });
   }, [ativo]);
 
   const no = NOS[ativo];
